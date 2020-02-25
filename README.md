@@ -1,5 +1,5 @@
 "# Ubook" 
 
+Ubook
 
-5
->>>>>>> e27f69417555452e03be35da81c28e57bf27e906
+The Official University of buffalo social media platform, in development.
