@@ -1,0 +1,28 @@
+
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<div class = "row">
+
+    <article class = "side-bar" >
+        <p id = "profile-side-bar" > 
+            <img src="{% static 'blog/profile-img.png' %}" alt="profile-logo" width="100" height="75"> </p>
+        <p id = "friend-side-bar"  >
+            <img src="{% static 'blog/friends-img.png' %}" alt="friends-logo" width="100" height="75"> 
+        </p>
+        <p id = "other-side-bar" >
+            <img src="{% static 'blog/chat-img.png' %}" style="background-color: inherit;" alt="chat-logo" width="100" height="75"> </p>
+        </p>
+    </article>
+
+<div id = "posts"> 
+   {% for post in posts %}
+   <article class = "post" >
+        <h1 class = "post-title">{{post.title}} </h1>
+        <p class = "post-content">{{post.content}}</p>
+        <p class = "post-meta">by {{post.author}} on {{post.date_posted}}</p>
+   </article>
+   {% endfor %}
+</div>
+{% endblock content %}
+</div>
