@@ -1,0 +1,35 @@
+Getting started:
+I'm using the 'home' app as an example. Django refers to base directories as
+apps, so 'home', 'blog', 'message', 'login', 'user_profile',and 'django_project' (this one is special becuase it has all our setting and main routing)
+are app.
+
+For the 'base.html' and 'main.css' you can just copy the files from the blog app
+into the other apps. 
+
+1. In app directory (ex. 'ubook>home')
+    - make 'ubook>home>template' directory
+    - make 'ubook>home>template>home' directory
+    - make base.html file: 'ubook>home>template>home>base.html'
+    - make other html files (ex. 'welcome.html'): 'ubook>home>template>home>welcome.html'
+2. In app directory (ex. 'ubook>home')
+    - make 'ubook>home>static' directory
+    - make 'ubook>home>static>home' directory
+    - make main.cc file: 'ubook>home>static>home>main.css'
+    - store other static files here. ex. pictures
+3. In app directory (ex. 'ubook>home')
+    - render html template. 'ubook>home>views'
+    - instead of returning an HttpResponse change to 'render(request,<template_name> ) , ex. template_name = 'home/welcome.html'
+4. In html file :
+    Add , ex <template_name> = home/base.html:
+    {% extends "<template_name" %}
+    {% load static %}
+    {% block content %}
+
+    ### write content of html here. 
+    ### Do not include head or body tags. 
+
+    {% endblock content %}
+5. Add app to 'django_project>settings>INSTALLED_APPS'.
+    - add to INSTALLED_APPS: '<base_directory>.apps.<Base_directory>Config'.
+        ex. for home app directory : 'home.apps.HomeConfig'
+6. run app : $python  manage.py runserver
