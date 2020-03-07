@@ -15,7 +15,7 @@ power back their rightful owners, the people, you and me!
 *[x] content sharing with your friends
 
 ## What we don't have...
-*[ ] Data Collection
+-[ ] Data Collection
 *[ ] Advertising
 *[ ] Manipulative algorithms
 *[ ] Content rules
