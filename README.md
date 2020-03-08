@@ -29,6 +29,7 @@ connections. Rate posts and add comments. Send private messages.
 ___
 ##### The Inspiration
 > Community
+
 University/College life is hard enough! Community strengthens society and adds joy to life. UBook is for meeting new
 friends, staying connected with old friends and discovering new experiences and opportunities.
 
