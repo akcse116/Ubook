@@ -1,6 +1,6 @@
 Getting started:
 I'm using the 'home' app as an example. Django refers to base directories as
-apps, so 'home', 'blog', 'message', 'login', 'user_profile',and 'django_project' (this one is special becuase it has all our setting and main routing)
+apps, so 'home', 'blog', 'message', 'login', 'user_profile',and 'django_project' (this one is special because it has all our setting and main routing)
 are app.
 
 For the 'base.html' and 'main.css' you can just copy the files from the blog app
