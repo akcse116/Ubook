@@ -35,12 +35,8 @@ friends, staying connected with old friends and discovering new experiences and 
 
 ___
 
-![University at Buffalo](http://www.buffalo.edu/content/www/brand/identity/university-logo-and-marks/jcr:content/par/image_13.img.209.auto.png/1460123040155.png
-"UB")
-![Markdown](https://d33wubrfki0l68.cloudfront.net/d2ee4ca35ede2ecd2d2b1257481e56ebfcf13570/34d25/assets/images/tool-icons/markdown-here.png
-"Markdown")
-![UBook](/user_profile/images/ubook_logosymbol.png)
-
 <img src="http://www.buffalo.edu/content/www/brand/identity/university-logo-and-marks/jcr:content/par/image_13.img.209.auto.png/1460123040155.png" width="100px" float="left" display="inline">
+
 <img src="https://d33wubrfki0l68.cloudfront.net/d2ee4ca35ede2ecd2d2b1257481e56ebfcf13570/34d25/assets/images/tool-icons/markdown-here.png" width="100px" float="left" display="inline">
+
 <img src="/user_profile/images/ubook_logosymbol.png" width="160px" backgroundColor="#49639e" float="left" display="inline">
