@@ -34,7 +34,7 @@ University/College life is hard enough! Community strengthens society and adds j
 friends, staying connected with old friends and discovering new experiences and opportunities.
 
 ___
-<div backgroundColor="#49639e" position="relative">
+<div background-color="#49639e" position="relative">
    <img src="http://www.buffalo.edu/content/www/brand/identity/university-logo-and-marks/jcr:content/par/image_13.img.209.auto.png/1460123040155.png" width="100px" float="left" display="inline">
 
    <img src="/user_profile/images/ubook_logosymbol.png" width="160px" backgroundColor="#49639e" float="left" display="inline">
