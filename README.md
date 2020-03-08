@@ -37,7 +37,7 @@ ___
 <div background-color="#49639e" position="relative">
    <img src="http://www.buffalo.edu/content/www/brand/identity/university-logo-and-marks/jcr:content/par/image_13.img.209.auto.png/1460123040155.png" width="100px" float="left" display="inline">
 
-   <img src="/user_profile/images/ubook_logosymbol.png" width="160px" backgroundColor="#49639e" float="left" display="inline">
+   <img src="/user_profile/images/ubook_symbol_logo_forREADME.png" width="160px" backgroundColor="#49639e" float="left" display="inline">
    
    <img src="https://d33wubrfki0l68.cloudfront.net/d2ee4ca35ede2ecd2d2b1257481e56ebfcf13570/34d25/assets/images/tool-icons/markdown-here.png" height="60px" float="left" display="inline">
 </div>
