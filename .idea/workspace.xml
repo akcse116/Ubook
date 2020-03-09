@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80cd9973-6aa4-4c00-bf04-67cf45300980" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/message/static/message/chatStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/message/static/message/messageScript.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/message/templates/message/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/message/templates/message/chatlog.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/message/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/message/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +59,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/message" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -165,17 +158,38 @@
       <workItem from="1583693860358" duration="4000" />
       <workItem from="1583693870768" duration="4063000" />
       <workItem from="1583708019663" duration="9075000" />
+      <workItem from="1583722590714" duration="256000" />
     </task>
+    <task id="LOCAL-00001" summary="added the messaging page frontend, need to work out how chat logs are sent and displayed">
+      <created>1583722692562</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583722692562</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added the messaging page frontend, need to work out how chat logs are sent and displayed" />
+    <option name="LAST_COMMIT_MESSAGE" value="added the messaging page frontend, need to work out how chat logs are sent and displayed" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="468" y="23" key="CommitChangelistDialog2" timestamp="1583722692093">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="468" y="23" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1583722692093" />
     <state x="-1342" y="297" key="SettingsEditor" timestamp="1583693892073">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
     <state x="-1342" y="297" key="SettingsEditor/0.0.2560.1400/-2560.0.2560.1400@-2560.0.2560.1400" timestamp="1583693892073" />
+    <state x="233" y="160" key="Vcs.Push.Dialog.v2" timestamp="1583722695917">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="233" y="160" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1583722695917" />
     <state x="-1147" y="479" key="com.intellij.ide.util.TipDialog" timestamp="1583693871268">
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
