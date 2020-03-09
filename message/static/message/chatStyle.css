@@ -1,0 +1,95 @@
+body{
+    background-color: darkslateblue;
+}
+
+#messenger{
+    display: flex;
+    background-color: midnightblue;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 65vh;
+}
+
+#history{
+    width: 200px;
+    color: white;
+    border-style: solid;
+    border-width: 1px;
+    overflow: scroll;
+}
+
+.histLogs{
+    padding: 3%;
+}
+
+.histLogs:hover{
+    background-color: mediumpurple;
+}
+
+.userInChat{
+    font-size: 18px;
+}
+.lastSent{
+    font-size: 12px;
+    color: lightblue;
+    line-height: 1px;
+}
+.lastMessage{
+    font-size: 16px;
+    height: 25px;
+    max-height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.divider{
+    background-color: white;
+    height: 1px;
+    min-width: 100%;
+}
+
+.log{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    color: white;
+    border-style: solid;
+    border-width: 1px;
+    overflow: scroll;
+}
+
+#messageLog{
+    flex-grow: 1;
+    overflow: scroll;
+    position: relative;
+}
+
+.yourMessage{
+    background-color: mediumpurple;
+    border-radius: 5px;
+    margin: 5% 2% 5% auto;
+    padding: 2%;
+    max-width: 50%;
+    word-wrap: break-word;
+}
+
+#messageInput{
+    display: flex;
+    background-color: white;
+    height: 10%;
+    max-height: 15%;
+    padding: 1%;
+}
+
+#input{
+    display: flex;
+    width: 100%;
+}
+
+#inputMessage{
+    flex-grow: 1;
+}
+
+#sendButton{
+    margin-left: 1%;
+}

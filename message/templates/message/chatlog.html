@@ -1,0 +1,28 @@
+{% extends "message/base.html" %}
+{% load static %}
+{% block content %}
+
+<div id="messenger">
+    <div id="history">
+        {% for message in messages %}
+        <div class="histLogs">
+            <h1 class="userInChat">{{ message.user }}</h1>
+            <p class="lastSent">{{ message.lastsent }}</p>
+            <div class="lastMessage">{{ message.lastmessage }}</div>
+        </div>
+        <div class="divider"></div>
+        {% endfor %}
+    </div>
+    <div class="log">
+        <div id="messageLog">
+        </div>
+        <div id="messageInput">
+            <form id="input" onsubmit="addToLog();return false;">
+                <input type="text" id="inputMessage"/>
+                <input type="submit" id="sendButton" value="Send"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

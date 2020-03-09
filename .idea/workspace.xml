@@ -2,12 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80cd9973-6aa4-4c00-bf04-67cf45300980" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/message/static/message/chatStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/message/static/message/messageScript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/message/templates/message/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/message/templates/message/chatlog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/message/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/message/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
@@ -17,11 +33,16 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -41,10 +62,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/message" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -67,7 +89,11 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/message" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/message/static/message" />
       <recent name="C:\Users\user\Documents\School\CSE_312\projects\project\user_profile\templates" />
       <recent name="C:\Users\user\Documents\School\CSE_312\projects\project\user_profile" />
     </key>
@@ -138,6 +164,7 @@
       <workItem from="1583679301271" duration="2364000" />
       <workItem from="1583693860358" duration="4000" />
       <workItem from="1583693870768" duration="4063000" />
+      <workItem from="1583708019663" duration="9075000" />
     </task>
     <servers />
   </component>
@@ -153,6 +180,10 @@
       <screen x="-2560" y="0" width="2560" height="1400" />
     </state>
     <state x="-1147" y="479" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/-2560.0.2560.1400@-2560.0.2560.1400" timestamp="1583693871268" />
+    <state x="422" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583722603798">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="422" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1583722603798" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Ubook$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1583611091634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/django_project" />
