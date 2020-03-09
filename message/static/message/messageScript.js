@@ -7,7 +7,7 @@ function addToLog(){
     if(val !== ""){
         log.innerHTML += (
             "<div class=\"yourMessage\">" + val + "</div>"
-        )
+        );
     }
 
 }

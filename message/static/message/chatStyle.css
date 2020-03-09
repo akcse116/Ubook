@@ -73,6 +73,25 @@ body{
     word-wrap: break-word;
 }
 
+
+.yourMessage{
+    background-color: mediumpurple;
+    padding: 2%;
+    max-width: 50%;
+    margin: 5% 2% 5% auto;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.otherMessage{
+    background-color: mediumpurple;
+    padding: 2%;
+    max-width: 50%;
+    margin: 5% auto 5% 2%;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
 #messageInput{
     display: flex;
     background-color: white;
