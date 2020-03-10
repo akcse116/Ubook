@@ -25,6 +25,21 @@
         input{
             border: solid 1px #202020;
         }
+        button{
+            cursor: pointer;
+        }
+        p{
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+            outline: none;
+            color: inherit;
+        }
+        a:hover{
+            cursor: pointer;
+        }
+
         #header_bar{
             margin: 0 auto;
             width: 85%;
@@ -60,14 +75,37 @@
             display: inline-block;
         }
 
+        #login_btn{
+            color: #FFFFFF;
+            float: left;
+            display: inline-block;
+            margin-left: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            background-color: #3864bc;
+            border: solid 1px #303030;
+            padding: 2px;
+            width: 60px;
+        }
+        #login_btn:hover{
+            background-color: #3B5998;
+        }
         #cover{
             margin-top: 0;
             background-image: url("../images/profile_bg.jpg");
+            background-color: #ffffff;
+            left: 10%;
+            height: 400px;
+            width: 850px;
+            position: relative;
+            border-radius: 3px;
+            margin-bottom: 2%;
         }
         .container{
             background-color: #ffffff;
             left: 10%;
-            height: 400px;
+            height: 100px;
+            max-height: 400px;
             width: 850px;
             position: relative;
             border-radius: 3px;
@@ -79,6 +117,8 @@
             position: absolute;
             bottom: 0;
             width: 100%;
+            border-top: solid #ede8e8 1px;
+            overflow: hidden;
 
         }
         #profile_img_div{
@@ -93,9 +133,55 @@
             overflow: hidden;
             z-index: 1;
         }
+        #profile_img_div:hover{
+            border: solid #303030 1px;
+            transition: 1s;
+        }
         #profile_img{
             width: 100%;
             height: 100%;
+            border-radius: 3px;
+        }
+        #profile_username{
+            color: #FFFFFF;
+            position: absolute;
+            bottom: 50px;
+            left: 200px;
+            font-weight: 600;
+            font-size: 1.4em;
+        }
+        .profile_btn{
+            text-align: center;
+            font-size: 1.2em;
+            background-color: inherit;
+            border-left: 1px #202020 solid;
+            position: relative;
+            width: 100px;
+            bottom: 0;
+            /*z-index: 1;*/
+            float: left;
+            height: 95%;
+            margin-top: auto;
+            margin-bottom: auto;
+            float: left;
+        }
+        .profile_btn p{
+            margin-top: 5px;
+        }
+        #about_btn{
+            margin-left: 210px;
+        }
+        #friend_request{
+            border-right: 1px #202020 solid;
+        }
+        .blue{
+            color: #3B5998;
+        }
+        .bold{
+            font-weight: 800;
+        }
+        .bigger{
+            font-size: 1.2em;
         }
 
 
@@ -112,13 +198,14 @@
             <div id="username_div">
                 <label>Username</label>
                 <br>
-                <input type="text" id="username"/>
+                <input type="text" id="username" placeholder="Login">
             </div>
             <div id="pass_div">
                 <label>Password</label>
                 <br>
                 <input type="password" id="password"/>
             </div>
+            <button id="login_btn">Log In</button>
 
         </div>
 
@@ -129,14 +216,38 @@
         <div id="profile_img_div">
             <img id="profile_img" src="../images/profile-placeholder.png" alt="profile image"/>
         </div>
+        <div id="profile_username">
+            <p>User Name</p>
+        </div>
 
         <div id="info_footer">
+
+            <a href="#"><div class="profile_btn" id="about_btn" alt="About">
+                <p>About</p>
+            </div></a>
+            <a href="#"><div class="profile_btn" id="photos" alt="Photos">
+                <p>Photos</p>
+            </div></a>
+            <a href="#"><div class="profile_btn" id="send_private_msg" alt="Send Private Message">
+                <p>Message</p>
+            </div></a>
+            <a href="#"><div class="profile_btn" id="friend_request" alt="Send Friend Request">
+                <p><span class="blue bold">+</span> Friend</p>
+            </div></a>
 
         </div>
     </div>
 
-    <div class="container">
 
+
+
+    <div class="container">
+        <div class="post">
+
+        </div>
+        <div class="feedback">
+
+        </div>
     </div>
     <div class="container">
 
