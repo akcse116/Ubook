@@ -1,34 +1,108 @@
 
 body {
-    background: #1a001a;
-    color: whitesmoke;
+    background-color:#e9eaee;
+    color:black;
     margin-top: 1rem;
-  }
-#profile-side-bar {
-    background: #1a001a;
+}
+.topnav {
+    background-color: #3B5998;
+    width: 100%;
+    height: 80px;
+}
+.container {
+    width:100%;
+}
+#main_logo{
+    width: 100px;
+    height: 80px;
+    float: left; 
+}
+
+.content-container {
+    background-color:#DCDCDC;
+    display: flex;
+    justify-content: center; 
+    width: 95%;
+    height: 95%;
+    
+}
+.menu-container {
+    display: flex;
+    width: 20%;
+    height: 80%;
+    justify-content: flex-start;
+    flex-wrap: wrap; 
+    
+}
+
+.menu-item {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    justify-content: flex-start;
+    background-color:#DCDCDC;
    
 }
-#posts {
-    float: right;
-    width: 80%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-style: solid; 
+
+.posts-container {
+    background-color:#DCDCDC;
+    display: flex;
+    justify-content: center;
+    width : 80%;
+    height: 100%;
+    
 }
-.side-bar {
-    float: left;
-    width: 20%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-style: solid; 
+.posts {
+    background-color: DCDCDC;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-shrink: 1;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: auto;
+    
 }
 .post {
-    display: inline-block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-style: solid; 
+    background-color: white;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    border-style: solid;
+    border-color: rgba(95, 92, 92, 0.534);
+    margin: auto;
+    border-radius: 3%;
+    padding: 5%;    
 }
 .post-meta {
-    padding-bottom: 1px;
-    margin-bottom: 4px;
+    font-size: 10px;
+    display: flex;
+}
+.post-title {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+.post-content {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    width: 80%;
+}
+.line-break {
+    display: flex; 
+    width: 80%;
+    height: 10px;
+    background-color:#DCDCDC;
+}
+
+#post-title {
+    width: 200px;
+    height: 200px;;
+}
+#post-body {
+    width: 200px;
+    height: 200px;;
 }

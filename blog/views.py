@@ -3,10 +3,10 @@ from django.http import HttpResponse
 
 posts = [
     {
-    'author': 'author1',
-    'title': 'author1 title',
-    'content': 'author1 post content                        ',
-    'date_posted':'march, 1st, 2020'
+    'author': 'Tiffany Tate',
+    'title': 'This is my first post on UBook!',
+    'content': 'Wow this is just like facebook except better!                        ',
+    'date_posted':'march, 8st, 2020'
     },
     {
     'author': 'author2',
