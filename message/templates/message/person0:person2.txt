@@ -1,3 +1,0 @@
-person0: hello
-person2: go away
-person0: : '(
