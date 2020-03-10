@@ -2,4 +2,4 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def home(request):
-    return render(request, 'templates/profile_draft.html')
+    return render(request, 'user_profile/profile_draft.html')
