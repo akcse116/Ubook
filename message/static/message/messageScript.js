@@ -9,5 +9,6 @@ function addToLog(){
             "<div class=\"yourMessage\">" + val + "</div>"
         );
     }
+    message.focus();
 
 }

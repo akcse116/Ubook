@@ -3,40 +3,52 @@
 {% load static %}
 {% block content %}
 <div class= "content-container">
-    <div class = "menu-container">
-        
-            <p class = "menu-item" > 
-                <img src="{% static 'blog/profile-img.png' %}" alt="profile-logo" width="100" height="75">
-            </p>
-            <p class = "menu-item"  >
-                <img src="{% static 'blog/friends-img.png' %}" alt="friends-logo" width="100" height="75"> 
-            </p>
-            <p class = "menu-item" >
-                <img src="{% static 'blog/chat-img.png' %}" alt="chat-logo" width="100" height="75"> 
-            </p>
-            <p class = "menu-item">
-                <a href="write">
-                <img src="{% static 'blog/write-post.png' %}" alt="write-post" width="100" height="75">
-                </a> 
-            </p>
-    </div>
+
+    <div id='write_post'>
+        <form action="/form-path" method="post" enctype="multipart/form-data">
+            <label for = "post-body">What's on your mind?  </label>
+            <input id= "post-body" type="text" name="body"><br>
+
+            <label for="post-media">attachment</label>
+            <input id="post-media" type="file" name="post-media">
+
+            <input type="submit" value="Post to UBOOK"> 
+        </form>
+   </div>
+    
     <br>
     <div class = "posts-container"> 
         <div class = "posts">
     {% for post in posts %}
 
         <article class = "post" >
-            <header>
-                <h1 class = "post-title">{{post.title}}</h1>
-                <p class = "post-meta">Published: {{post.date_posted}} </p>
-            </header>
-            <p class = "post-content">
-                {{post.content}} 
-            </p>
-            <footer class = "post-meta">
+           
+            <div class = "post-content">
+                <div class ="post-box">
+                    {{post.content}} 
+                </div>
+                
+                <div class="interact">
+                    
+                    <button type="button">
+                        <i style="font-size:24px" class="fa">&#xf087;</i>
+                    </button>
+                    
+                    
+                    <form>
+                        <label for = "post-comment">comment: </label>
+                        <input id= "post-comment" type="text" name="comment">
+                        <input type="submit" value="comment"> 
+                    </form>
+                </div>
+                
+            </div>
+            <div class = "post-meta">
                 {{post.author}}
-            </footer>
+                Published: {{post.date_posted}}
+            </div>
         </article>
+
         <div class= "line-break"></div>
 
 
