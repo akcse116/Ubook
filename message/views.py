@@ -34,7 +34,7 @@ messages = [
     }
 ]
 
-test = open('message/templates/message/person0:person2.txt', 'r').read()
+test = open('message/templates/message/person0___person2.txt', 'r').read()
 
 logs = {
     ('person0', 'person2'): [i.split(": ", 1) for i in test.splitlines()]

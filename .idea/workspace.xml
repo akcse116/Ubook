@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80cd9973-6aa4-4c00-bf04-67cf45300980" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/message/static/message/ubook_logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/static/message/chatStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/message/static/message/chatStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/static/message/messageScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/message/static/message/messageScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/message/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +82,7 @@
       <recent name="C:\Users\user\Documents\School\CSE_312\projects\project\user_profile" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.manage">
+  <component name="RunManager" selected="Docker.Dockerfile">
     <configuration name="base.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Ubook/home/templates/home/base.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -90,6 +93,9 @@
       <method v="2" />
     </configuration>
     <configuration name="profile_draft.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/project/user_profile/templates/profile_draft.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="welcome.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Ubook/home/templates/home/welcome.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -114,52 +120,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Ubook" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Ubook" type="Python.DjangoServer" factoryName="Django server">
-      <module name="Ubook" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="django_project.settings" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
@@ -176,11 +136,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.manage" />
         <item itemvalue="Docker.Dockerfile" />
         <item itemvalue="JavaScript Debug.profile_draft.html" />
         <item itemvalue="JavaScript Debug.base.html" />
         <item itemvalue="Python.__init__" />
+        <item itemvalue="JavaScript Debug.welcome.html" />
       </list>
     </recent_temporary>
   </component>
@@ -226,7 +186,6 @@
       <workItem from="1583865015569" duration="25000" />
       <workItem from="1583867379604" duration="69000" />
       <workItem from="1583867556846" duration="2342000" />
-      <workItem from="1583931240832" duration="789000" />
     </task>
     <task id="LOCAL-00001" summary="changed file name">
       <created>1583858346768</created>
@@ -271,30 +230,10 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="280" y="23" width="812" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1583869580147" />
-    <state width="1342" height="195" key="GridCell.Tab.0.bottom" timestamp="1583931536475">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1342" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583931536475" />
-    <state width="1342" height="195" key="GridCell.Tab.0.center" timestamp="1583931536474">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1342" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583931536474" />
-    <state width="1342" height="195" key="GridCell.Tab.0.left" timestamp="1583931536474">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1342" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583931536474" />
-    <state width="1342" height="195" key="GridCell.Tab.0.right" timestamp="1583931536474">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1342" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583931536474" />
     <state x="286" y="132" key="Vcs.Push.Dialog.v2" timestamp="1583869583381">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="286" y="132" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1583869583381" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1583931242126">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1583931242126" />
     <state x="475" y="316" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583871962937">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
@@ -302,7 +241,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Ubook$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1583611091634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/django_project" />
-    <SUITE FILE_PATH="coverage/Ubook$manage.coverage" NAME="manage Coverage Results" MODIFIED="1583931367343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="masterDetails">
     <states>
