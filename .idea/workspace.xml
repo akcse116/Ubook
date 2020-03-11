@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80cd9973-6aa4-4c00-bf04-67cf45300980" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/message/templates/message/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/message/templates/message/base.html" afterDir="false" />
-    </list>
+    <list default="true" id="80cd9973-6aa4-4c00-bf04-67cf45300980" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,6 +146,7 @@
       <workItem from="1583802286532" duration="901000" />
       <workItem from="1583848892688" duration="2845000" />
       <workItem from="1583954724028" duration="3486000" />
+      <workItem from="1583961033665" duration="76000" />
     </task>
     <task id="LOCAL-00001" summary="added links to each other's pages">
       <created>1583951262352</created>
