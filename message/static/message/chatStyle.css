@@ -2,6 +2,7 @@ body {
     background-color:#e9eaee;
     color:black;
     margin-top: 1rem;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
 .topnav {
@@ -13,7 +14,8 @@ body {
 }
 
 .container{
-    width: 100%;
+    width: 80%;
+    margin: auto;
 }
 
 #messenger{
@@ -38,7 +40,7 @@ body {
 }
 
 .histLogs:hover{
-    background-color: mediumpurple;
+    background-color: #3864bc;
 }
 
 .userInChat{
@@ -51,7 +53,7 @@ body {
 }
 .lastMessage{
     font-size: 16px;
-    height: 25px;
+    height: 20px;
     max-height: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -79,7 +81,7 @@ body {
 }
 
 .yourMessage{
-    background-color: mediumpurple;
+    background-color: #3864bc;
     border-radius: 5px;
     margin: 5% 2% 5% auto;
     padding: 2%;
@@ -89,7 +91,7 @@ body {
 
 
 .yourMessage{
-    background-color: mediumpurple;
+    background-color: #3864bc;
     padding: 2%;
     max-width: 50%;
     margin: 5% 2% 5% auto;
@@ -98,7 +100,7 @@ body {
 }
 
 .otherMessage{
-    background-color: mediumpurple;
+    background-color: #3864bc;
     padding: 2%;
     max-width: 50%;
     margin: 5% auto 5% 2%;
@@ -110,7 +112,7 @@ body {
     display: flex;
     background-color: white;
     height: 10%;
-    max-height: 15%;
+    max-height: 5%;
     padding: 1%;
 }
 
@@ -125,4 +127,7 @@ body {
 
 #sendButton{
     margin-left: 1%;
+    font-size: 16px;
+    background-color: #3864bc;
+    color: white;
 }
