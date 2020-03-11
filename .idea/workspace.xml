@@ -254,7 +254,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.profile_draft.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.base.html">
     <configuration name="base.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Ubook/home/templates/home/base.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -294,7 +294,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.profile_draft.html (1)" />
         <item itemvalue="JavaScript Debug.profile_draft.html" />
         <item itemvalue="JavaScript Debug.base.html" />
         <item itemvalue="Python.__init__" />
