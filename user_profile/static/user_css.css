@@ -158,6 +158,9 @@ a:hover{
     margin-bottom: auto;
     float: left;
 }
+.profile_btn:hover{
+    background-color: #e9eaee;
+}
 .profile_btn p{
     margin-top: 5px;
 }
