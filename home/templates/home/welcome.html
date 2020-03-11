@@ -1,10 +1,61 @@
 {% extends "home/base.html" %}
 {% load static %}
 {% block content %}
-<h1>Welcome page! Under construction</h1>
+<h1>WELCOME</h1>
 <div id="main_container">
-    <div id="profile_pic">
+    <style>
 
+        .content{
+            border: 3px steelblue;
+        }
+
+        .log-form{
+            margin: auto;
+            margin-top: 20%;
+            display: block;
+            border: 3px solid blue;
+            text-align: center;
+            width:60%;
+        }
+
+        .sign-form{
+            margin: auto;
+            margin-top: 10%;
+            display: block;
+            border: 3px solid orangered;
+            text-align: center;
+            width:60%;
+        }
+
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <div class="content">
+
+        <div class="log-form">
+            <h2>Login to your account</h2>
+            <form action="/home">
+                <input type="text" title="username" placeholder="username"/></br>
+                <input type="password" title="username" placeholder="password" /></br>
+                <button type="submit" class="btn">Login</button></br>
+                <a class="forgot" href="#">Forgot Username?</a></br></br>
+                <button type="signup" class="btn" href="blog.html">Sign Up</button></br></br>
+                Above button disappears after clicked
+            </form>
+        </div>
+
+        <div class="sign-form">
+            This reveals after above is clicked</br>
+            <h2>Enter your credentials</h2>
+            <form action="/signup">
+                <input type="text" title="firstname" placeholder="First Name"/></br>
+                <input type="text" title="lastname" placeholder="Last Name" /></br>
+                <input type="text" title="email" placeholder="UB E-mail"/></br>
+                <input type="text" title="sign_password" placeholder="Choose a password" /></br></br>
+                <button type="signup" class="btn" href="user_profile.html">Submit</button></br></br>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock content %}

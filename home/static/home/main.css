@@ -1,9 +1,16 @@
-
 body {
-    background: #1a001a;
-    color: whitesmoke;
+    background-color:#e9eaee;
+    color:black;
     margin-top: 1rem;
-  }
+}
+
+.topnav {
+    background-color: #3B5998;
+    width: 100%;
+    height: 100px;
+    top: 0;
+}
+
 #profile-side-bar {
     background: #1a001a;
    

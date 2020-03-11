@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80cd9973-6aa4-4c00-bf04-67cf45300980" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/home/static/home/ubook_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/login/static/login/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/login/static/login/ubook_logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/home/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/static/home/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/home/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message/templates/message/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/message/templates/message/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/static/home/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/home/static/home/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/home/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home/welcome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/static/message/chatStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/message/static/message/chatStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,9 +40,11 @@
     <option name="width" value="1055" />
     <option name="height" value="980" />
   </component>
+  <component name="ProjectId" id="1YzoKIwjEKuFRUbiwWDbWRXaYpk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -71,14 +66,14 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/login/static/home" />
-      <recent name="$PROJECT_DIR$/home/static/home" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user\Documents\School\CSE_312\projects\project\user_profile\templates\user_profile" />
       <recent name="C:\Users\user\Documents\School\CSE_312\projects\project\user_profile\templates" />
       <recent name="C:\Users\user\Documents\School\CSE_312\projects\project\user_profile" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/login/static/home" />
+      <recent name="$PROJECT_DIR$/home/static/home" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.base.html">
@@ -161,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583951262352</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed some folder redirection stuff">
+      <created>1583954631461</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1583954631461</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,17 +171,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added links to each other's pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="added links to each other's pages" />
+    <MESSAGE value="fixed some folder redirection stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some folder redirection stuff" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="234" y="23" width="812" height="777" key="CommitChangelistDialog2" timestamp="1583951261873">
+    <state x="234" y="23" width="812" height="777" key="CommitChangelistDialog2" timestamp="1583954631126">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="234" y="23" width="812" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1583951261873" />
-    <state x="240" y="132" key="Vcs.Push.Dialog.v2" timestamp="1583951263797">
+    <state x="234" y="23" width="812" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1583954631126" />
+    <state x="240" y="132" key="Vcs.Push.Dialog.v2" timestamp="1583954632906">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="240" y="132" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1583951263797" />
+    <state x="240" y="132" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1583954632906" />
     <state x="429" y="316" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583952938520">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
