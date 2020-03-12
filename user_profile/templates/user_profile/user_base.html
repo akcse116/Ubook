@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>UBook - Profile</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"><!-- google font -->
-    <link rel="stylesheet" type="text/css" href = "../../static/user_css.css">
+    <link rel="stylesheet" type="text/css" href = "{% static 'user_profile/user_css.css' %}">
 
     <!-- custom color #255FAC -->
 </head>
@@ -13,7 +14,9 @@
 <header>
     <div id="header_bar">
         <div id="main_logo">
-            <img id="ubook_logo" src="../../static/ubook_logosymbol.png" alt="ubook logo"/>
+            <a href="/home">
+                <img id="ubook_logo" src="{% static 'user_profile/ubook_logosymbol.png' %}" alt="ubook logo"/>
+            </a>
         </div>
         <div id="login">
             <div id="username_div">

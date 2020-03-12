@@ -39,3 +39,9 @@ body {
     padding-bottom: 1px;
     margin-bottom: 4px;
 }
+.sign-form{
+    display: none;
+}
+#sign_up:active + .sign-form {
+    display: block;
+}

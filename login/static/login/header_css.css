@@ -39,9 +39,15 @@ a:hover{
     width: 85%;
 }
 #main_logo{
-    width: 50%;
+    width: 30%;
     float: left;
     margin-top: 20px;
+}
+#link_div{
+    width: 20%;
+    float: left;
+    margin: 40px 0 0 0;
+
 }
 
 #login{
@@ -84,26 +90,15 @@ a:hover{
 #login_btn:hover{
     background-color: #3B5998;
 }
-#cover{
-    margin-top: 0;
-    background-image: url("../../static/profile_bg.jpg");
-    background-color: #ffffff;
-    left: 10%;
-    height: 400px;
-    width: 850px;
-    position: relative;
-    border-radius: 3px;
-    margin-bottom: 2%;
-}
 .container{
+
     background-color: #ffffff;
     left: 10%;
-    height: 100px;
-    max-height: 400px;
     width: 850px;
     position: relative;
     border-radius: 3px;
     margin-bottom: 2%;
+    padding: 2px;
 }
 #info_footer{
     background-color: inherit;
@@ -159,18 +154,7 @@ a:hover{
     margin-bottom: auto;
     float: left;
 }
-.profile_btn:hover{
-    background-color: #e9eaee;
-}
-.profile_btn p{
-    margin-top: 5px;
-}
-#about_btn{
-    margin-left: 210px;
-}
-#friend_request{
-    border-right: 1px #202020 solid;
-}
+
 .blue{
     color: #3B5998;
 }
@@ -179,16 +163,4 @@ a:hover{
 }
 .bigger{
     font-size: 1.2em;
-}
-.post_header{
-    min-height: 40px;
-    position: relative;
-    background-color: #ffffff;
-    border-radius: 3px;
-}
-.post{
-    min-height: 60px;
-    position: relative;
-    background-color: #ffffff;
-    border-radius: 3px;
 }
