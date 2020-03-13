@@ -1,8 +1,10 @@
 
 body {
     background-color:#e9eaee;
+    padding: 0;
+    width: 100%;
     color:black;
-    margin-top: 1rem;
+    /*margin: 1rem 0 0 0;*/
 }
 .topnav {
     background-color: #3B5998;
@@ -37,7 +39,7 @@ body {
     
 }
 .posts {
-    background-color: DCDCDC;
+    background-color: #DCDCDC;
     width: 90%;
     height: 90%;
     display: flex;

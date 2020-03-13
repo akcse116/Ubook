@@ -5,7 +5,7 @@ body{
     /*background-color: #EDF0F5;*/
     margin: 0;
     padding: 0;
-    z-index: 0;
+    /*z-index: 0;*/
     font-family: 'Source Sans Pro', sans-serif, Arial, Helvetica;
 }
 
@@ -21,6 +21,9 @@ input{
 }
 button{
     cursor: pointer;
+}
+ul{
+    list-style: none;
 }
 p{
     margin: 0;
@@ -42,12 +45,25 @@ a:hover{
     width: 50%;
     float: left;
     margin-top: 20px;
+
 }
 
 #login{
     width: 50%;
     float: right;
     margin-top: 30px;
+    display: none;
+}
+#logged_in{
+    width: 50%;
+    float: right;
+    margin-top: 40px;
+    font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
+}
+#logged_in p{
+    margin-top: 5px;
+    float: left;
+    color: #fcfffa;
 }
 #login label{
     font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
@@ -55,6 +71,7 @@ a:hover{
 }
 #ubook_logo{
     width: 170px;
+
 }
 #username_div{
     /*color: #fcfffa;*/
@@ -62,6 +79,25 @@ a:hover{
     display: inline-block;
     margin-left: 140px;
     margin-right: 10px;
+}
+.user_mini_pic{
+    margin: 1vh;
+    background-color: #DCDCDC;
+    padding: 1px;
+    width: 30px;
+    border-radius: 15px;
+    float: left;
+}
+
+.menu{
+    float: left;
+}
+.menu ul li{
+    margin: 0 1vh 0 1vh;
+    float: left;
+}
+.menu ul li:hover{
+    border-bottom: solid #e9eaee 3px;
 }
 #pass_div{
     /*color: #fcfffa;*/
@@ -86,7 +122,7 @@ a:hover{
 }
 #cover{
     margin-top: 0;
-    background-image: url("../../static/profile_bg.jpg");
+    background-image: url("{% static 'user_profile/profile_bg.jpg' %}");
     background-color: #ffffff;
     left: 10%;
     height: 400px;
@@ -98,7 +134,7 @@ a:hover{
 .container{
     background-color: #ffffff;
     left: 10%;
-    height: 100px;
+    /*height: 100px;*/
     max-height: 400px;
     width: 850px;
     position: relative;
@@ -185,8 +221,13 @@ a:hover{
     position: relative;
     background-color: #ffffff;
     border-radius: 3px;
+    border-bottom: solid #E9EAEE 1px;
+}
+.post_header p {
+    float: left;
 }
 .post{
+    padding: 5px 12px 5px 12px;
     min-height: 60px;
     position: relative;
     background-color: #ffffff;

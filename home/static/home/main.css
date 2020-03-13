@@ -3,7 +3,12 @@ body {
     color:black;
     margin-top: 1rem;
 }
-
+h1{
+    text-align: center;
+}
+#main_container{
+    text-align: center;
+}
 .topnav {
     background-color: #3B5998;
     width: 100%;
@@ -39,9 +44,4 @@ body {
     padding-bottom: 1px;
     margin-bottom: 4px;
 }
-.sign-form{
-    display: none;
-}
-#sign_up:active + .sign-form {
-    display: block;
-}
+

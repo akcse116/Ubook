@@ -9,6 +9,11 @@
     <link rel="stylesheet" type="text/css" href = "{% static 'user_profile/user_css.css' %}">
 
     <!-- custom color #255FAC -->
+    <style>
+        #cover{
+            background-image: url("{% static 'user_profile/profile_bg.jpg' %}");
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -18,19 +23,40 @@
                 <img id="ubook_logo" src="{% static 'user_profile/ubook_logosymbol.png' %}" alt="ubook logo"/>
             </a>
         </div>
+
+        <div id="logged_in">
+            <a href="/user_profile" ><img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>
+                <p>User Name</p></a>
+            <div class="menu">
+
+                        <ul>
+                            <li>
+                                <a href="/home"><p>Home</p></a>
+                            </li>
+                            <li>
+                                <a href="/blog"></a><p>Blog</p></a>
+                            </li>
+                            <li>
+                                <a href="/message"><p>Message</p></a>
+                            </li>
+                        </ul>
+            </div>
+        </div>
+
+
         <div id="login">
             <div id="username_div">
-                <label>Username</label>
-                <br>
-                <input type="text" id="username" placeholder="Login">
-            </div>
-            <div id="pass_div">
-                <label>Password</label>
-                <br>
-                <input type="password" id="password"/>
-            </div>
-            <button id="login_btn">Log In</button>
+                    <label>Username</label>
+                    <br>
+                    <input type="text" id="username" placeholder="Login">
+                </div>
 
+                <div id="pass_div">
+                    <label>Password</label>
+                    <br>
+                    <input type="password" id="password"/>
+                </div>
+                <button id="login_btn">Log In</button>
         </div>
 
     </div>
