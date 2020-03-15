@@ -88,7 +88,22 @@ a:hover{
     border-radius: 15px;
     float: left;
 }
-
+#user_mini {
+    -webkit-transition-duration: 1s;
+    position: relative;
+    margin-top: 0;
+    padding: 0;
+    float: left;
+    margin-top: 16px;
+}
+#user_mini:hover .user_mini_pic{
+    -webkit-transition-duration: .6s;
+    transform: translate(0px,-23px);
+}
+#user_mini p{
+    position: relative;
+    float: left;
+}
 .menu{
     float: left;
 }
@@ -97,6 +112,7 @@ a:hover{
     float: left;
 }
 .menu ul li:hover{
+    transition-duration: .25s;
     border-bottom: solid #e9eaee 3px;
 }
 #pass_div{
@@ -165,7 +181,8 @@ a:hover{
 }
 #profile_img_div:hover{
     border: solid #303030 1px;
-    transition: 1s;
+    padding: 1px;
+    transition-duration: 1s;
 }
 #profile_img{
     width: 100%;
@@ -196,6 +213,7 @@ a:hover{
     float: left;
 }
 .profile_btn:hover{
+    transition-duration: .25s;
     background-color: #e9eaee;
 }
 .profile_btn p{
