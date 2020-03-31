@@ -7,31 +7,31 @@ messages = [
         'lastmessage': 'hi',
         'lastsent': 'Jan. 1, 2020'
     },
-    {
-        'user': 'person2',
-        'lastmessage': 'hello',
-        'lastsent': 'Jan. 1, 2020'
-    },
-    {
-        'user': 'person3',
-        'lastmessage': 'oh nooooooooooo whyyyyy',
-        'lastsent': 'Jan. 1, 2020'
-    },
-    {
-        'user': 'person3',
-        'lastmessage': 'oh nooooooooooo whyyyyy',
-        'lastsent': 'Jan. 1, 2020'
-    },
-    {
-        'user': 'person3',
-        'lastmessage': 'oh nooooooooooo whyyyyy',
-        'lastsent': 'Jan. 1, 2020'
-    },
-    {
-        'user': 'person3',
-        'lastmessage': 'oh nooooooooooo whyyyyy',
-        'lastsent': 'Jan. 1, 2020'
-    }
+    # {
+    #     'user': 'person2',
+    #     'lastmessage': 'hello',
+    #     'lastsent': 'Jan. 1, 2020'
+    # },
+    # {
+    #     'user': 'person3',
+    #     'lastmessage': 'oh nooooooooooo whyyyyy',
+    #     'lastsent': 'Jan. 1, 2020'
+    # },
+    # {
+    #     'user': 'person3',
+    #     'lastmessage': 'oh nooooooooooo whyyyyy',
+    #     'lastsent': 'Jan. 1, 2020'
+    # },
+    # {
+    #     'user': 'person3',
+    #     'lastmessage': 'oh nooooooooooo whyyyyy',
+    #     'lastsent': 'Jan. 1, 2020'
+    # },
+    # {
+    #     'user': 'person3',
+    #     'lastmessage': 'oh nooooooooooo whyyyyy',
+    #     'lastsent': 'Jan. 1, 2020'
+    # }
 ]
 
 test = open('message/templates/message/person0___person2.txt', 'r').read()
@@ -50,3 +50,4 @@ def home(request):
         'user': user
     }
     return render(request, 'message/chatlog.html', context)
+
