@@ -19,11 +19,14 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     # each attribute will be different field in DB
-
+    # primary key identifier for Post object
+    id = models.AutoField(primary_key=True)
     # max_length restraint
     title = models.CharField(max_length=100)
     # TextField similar to CharField but w/o restrictions
     content = models.TextField()
+    # media field for media uploads. Store media path as char field.
+    media = models.CharField(max_length =100)
     # auto_now_add set date_posed to current date and time
     # can't ever update - won't allow for edits
     date_posted = models.DateTimeField(auto_now_add=True)
