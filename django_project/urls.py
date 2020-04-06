@@ -23,5 +23,6 @@ urlpatterns = [
     path('user_profile/', include('user_profile.urls')),
     path('message/', include('message.urls')),
     path('login/', include('login.urls')),
+    path('', include('login.urls')),
    
 ]

@@ -5,9 +5,10 @@
 <div class= "content-container">
 
     <div id='write_post'>
-        <form action="/form-path" method="post" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <label for = "post-body">What's on your mind?  </label>
-            <input id= "post-body" type="text" name="body"><br>
+            <input id= "post-body" type="text" name="post-body"><br>
 
             <label for="post-media">attachment</label>
             <input id="post-media" type="file" name="post-media">
@@ -19,6 +20,7 @@
     <br>
     <div class = "posts-container"> 
         <div class = "posts">
+    
     {% for post in posts %}
 
         <article class = "post" >

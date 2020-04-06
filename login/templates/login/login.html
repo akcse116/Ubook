@@ -34,6 +34,7 @@
         <div class="log-form">
           <h2>Login to your account</h2>
           <form action="/home">
+            {% csrf_token %}
             <input type="text" title="username" placeholder="username"/></br>
             <input type="password" title="username" placeholder="password" /></br>
             <button type="submit" class="btn" href="blog.html">Login</button></br>
@@ -47,6 +48,7 @@
             This to reveal after above is clicked</br>
             <h2>Enter your credentials</h2>
             <form action="/signup">
+                {% csrf_token %}
                 <input type="text" title="firstname" placeholder="First Name"/></br>
                 <input type="text" title="lastname" placeholder="Last Name" /></br>
                 <input type="text" title="email" placeholder="UB E-mail"/></br>
