@@ -1,6 +1,5 @@
 # # message/consumers.py
 import json
-from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 from django.shortcuts import render
 
@@ -27,6 +26,7 @@ class BlogConsumer(WebsocketConsumer):
         # print(self.scope['url_route']['kwargs'])
         # print(self.__dict__)
         self.name = self.scope['client'][1]
+        print("connect blog");
         self.accept()
 
     def disconnect(self, close_code):

@@ -1,8 +1,8 @@
 # # message/consumers.py
 import json
-from asgiref.sync import async_to_sync
+# from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-from django.shortcuts import render
+# from django.shortcuts import render
 
 connected = {}
 
@@ -26,6 +26,7 @@ class ChatConsumer(WebsocketConsumer):
     def connect(self):
         # print(self.scope['url_route']['kwargs'])
         # print(self.__dict__)
+        print("connect message")
         self.name = self.scope['client'][1]
         self.accept()
 
