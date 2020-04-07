@@ -11,7 +11,8 @@ body{
 
 header{
     z-index: 1;
-    height: 82px;
+    width: 100vw;
+    height: 11.5vh;
     /*background-color: #255FAC;*/
     background-color: #3B5998;
     border-bottom: solid 1px #364876;
@@ -36,15 +37,19 @@ a{
 a:hover{
     cursor: pointer;
 }
-
+.pad40percent{
+    height: 100%;
+    float: left;
+    width: 40%;
+}
 #header_bar{
     margin: 0 auto;
-    width: 85%;
+    width: 85vw;
 }
 #main_logo{
     width: 50%;
     float: left;
-    margin-top: 20px;
+    margin-top: 1.1%;
 
 }
 
@@ -56,11 +61,12 @@ a:hover{
 }
 #logged_in{
     width: 50%;
-    float: right;
-    margin-top: 40px;
+    float: left;
+    margin-top: 2.8%;
     font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
 }
 #logged_in p{
+    /*position: relative;*/
     margin-top: 5px;
     float: left;
     color: #fcfffa;
@@ -70,7 +76,7 @@ a:hover{
     color: #fcfffa;
 }
 #ubook_logo{
-    width: 170px;
+    width: 27%;
 
 }
 #username_div{
@@ -88,19 +94,22 @@ a:hover{
     border-radius: 15px;
     float: left;
 }
-#user_mini {
-    -webkit-transition-duration: 1s;
-    position: relative;
-    margin-top: 0;
-    padding: 0;
+#user_mini_top_div{
+    /*width: 50%;*/
+    /*position: relative;*/
+    padding: 0 0 0 20%;
     float: left;
-    margin-top: 16px;
+    margin: 16px 0 0 0;
+    /*transition-duration: .6s;*/
 }
-#user_mini:hover .user_mini_pic{
-    -webkit-transition-duration: .6s;
+#user_mini_top_div:hover .user_mini_pic{
+    transition-duration: .6s;
     transform: translate(0px,-23px);
 }
-#user_mini p{
+
+#user_mini_top_div p{
+    margin: 0;
+    padding: 0;
     position: relative;
     float: left;
 }
@@ -140,16 +149,16 @@ a:hover{
     margin-top: 0;
     background-image: url("{% static 'user_profile/profile_bg.jpg' %}");
     background-color: #ffffff;
-    left: 10%;
+    left: 20vw;
     height: 400px;
     width: 850px;
     position: relative;
     border-radius: 3px;
     margin-bottom: 2%;
 }
-.container{
+.main_container{
     background-color: #ffffff;
-    left: 10%;
+    left: 20vw;
     /*height: 100px;*/
     max-height: 400px;
     width: 850px;
@@ -157,6 +166,18 @@ a:hover{
     border-radius: 3px;
     margin-bottom: 2%;
 }
+.container{
+    background-color: #ffffff;
+    left: 20vw;
+    /*height: 100px;*/
+    /*max-height: ;*/
+    width: 850px;
+    position: relative;
+    border-radius: 3px;
+    margin-bottom: 2%;
+    overflow: hidden;
+}
+
 #info_footer{
     background-color: inherit;
     height: 35px;
@@ -246,8 +267,42 @@ a:hover{
 }
 .post{
     padding: 5px 12px 5px 12px;
-    min-height: 60px;
+    min-height: 1.1rem;
     position: relative;
     background-color: #ffffff;
     border-radius: 3px;
+}
+.add_comment_post_div{
+    border-top: #E9EAEE 1px solid;
+    padding: .3%;
+    overflow: hidden;
+}
+.followup{
+    position: relative;
+    padding: 2px;
+    width: 85%;
+    max-width: 85%;
+    min-height: 1.5rem;
+    margin: 1%;
+    float: left;
+    border-radius: 3px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+.followup_comment_btn{
+    width: 10%;
+    margin: 1%;
+    position: relative;
+    float: left;
+    top: 17px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+.followup_comment_btn:hover{
+    background-color: #d1f0db;
+}
+.followup_comment_btn:active{
+    background-color: #88a08d;
 }

@@ -2,7 +2,7 @@
 <!--{% load static %}-->
 {% block content %}
 <main>
-    <div class="container" id="cover">
+    <div class="main_container" id="cover">
         <div id="profile_img_div">
             <img id="profile_img" src="{% static 'user_profile/profile-placeholder.png' %}" alt="profile image"/>
         </div>
@@ -40,9 +40,15 @@
         </div>
         <div class="post">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis eleifend quam adipiscing vitae proin sagittis nisl.
+                This is definitely my fave part of the year. Don't you just love quarantine season?
             </p>
         </div>
+        <div class="add_comment_post_div">
+<!--            <input type="text" class="followup" id="followup1">-->
+            <textarea class="followup" id="followup1"></textarea>
+            <button class="followup_comment_btn" onclick="send_followup('followup1')">Comment</button>
+        </div>
+
     </div>
     <div class="container">
         <div class="post_header">
@@ -53,7 +59,7 @@
         </div>
         <div class="post">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                D's get degrees. Know what I'm sayin?
             </p>
         </div>
     </div>

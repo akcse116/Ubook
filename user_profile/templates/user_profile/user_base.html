@@ -14,6 +14,8 @@
             background-image: url("{% static 'user_profile/profile_bg.jpg' %}");
         }
     </style>
+    <script src="{% static 'user_profile/post_script.js' %}"></script>
+    <script src="{% static 'user_profile/ws_script.js' %}"></script>
 </head>
 <body>
 <header>
@@ -24,8 +26,12 @@
             </a>
         </div>
 
+
+
         <div id="logged_in">
-            <div id="user_mini">
+            <div class="pad40percent"></div>
+            <div id="user_mini_top_div">
+
             <a href="/user_profile" ><img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>
                 <p>User Name</p></a>
             </div>
@@ -36,7 +42,7 @@
                                 <a href="/home"><p>Home</p></a>
                             </li>
                             <li>
-                                <a href="/blog"></a><p>Blog</p></a>
+                                <a href="/blog"><p>Blog</p></a>
                             </li>
                             <li>
                                 <a href="/message"><p>Message</p></a>

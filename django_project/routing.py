@@ -5,13 +5,15 @@ from django.conf.urls import url
 from django.urls import re_path
 import message.routing
 import blog.routing
+import user_profile.routing
 
 application = ProtocolTypeRouter({
     # (http->django views is added by default)
     'websocket': AuthMiddlewareStack(
         URLRouter(
             blog.routing.websocket_urlpatterns +
-            message.routing.websocket_urlpatterns
+            message.routing.websocket_urlpatterns +
+            user_profile.routing.websocket_urlpatterns
         )
     ),
 })
