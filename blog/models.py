@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 # represent database structure as classes
@@ -33,7 +34,11 @@ class Post(models.Model):
     # pulls User from separate table created by django
     # one-to-many relationship // one user can have multiple posts, but a post can only have 1 author
     # ForeignKey(related table, what to do if user who created post gets deleted - delete post)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # ----
+    #likes = models.ManyToManyField('self', symmetrical=False, null=True)
+    # ----
+    parent_id = models.IntegerField()
 
     # return how we want Post to be printed out
     def __str__(self):
