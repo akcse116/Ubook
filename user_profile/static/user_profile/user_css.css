@@ -7,21 +7,25 @@ body{
     padding: 0;
     /*z-index: 0;*/
     font-family: 'Source Sans Pro', sans-serif, Arial, Helvetica;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 header{
     z-index: 1;
-    width: 100vw;
+    width: 100%;
     height: 11.5vh;
     /*background-color: #255FAC;*/
     background-color: #3B5998;
     border-bottom: solid 1px #364876;
+
 }
 input{
     border: solid 1px #202020;
 }
 button{
     cursor: pointer;
+    outline: none;
 }
 ul{
     list-style: none;
@@ -77,7 +81,11 @@ a:hover{
 }
 #ubook_logo{
     width: 27%;
-
+    transition-duration: .6s;
+}
+#ubook_logo:hover{
+    width: 33%;
+    transition-duration: .6s;
 }
 #username_div{
     /*color: #fcfffa;*/
@@ -93,18 +101,28 @@ a:hover{
     width: 30px;
     border-radius: 15px;
     float: left;
+    transition-duration: .6s;
+}
+.user_pic_tag{
+    font-size: 0;
+    /*overflow: hidden;*/
 }
 #user_mini_top_div{
-    /*width: 50%;*/
+    min-width: 20%;
+    max-width: 30%;
     /*position: relative;*/
     padding: 0 0 0 20%;
     float: left;
     margin: 16px 0 0 0;
-    /*transition-duration: .6s;*/
+
 }
 #user_mini_top_div:hover .user_mini_pic{
     transition-duration: .6s;
     transform: translate(0px,-23px);
+}
+#user_mini_top_div:hover .user_pic_tag{
+    font-size: inherit;
+    transition-duration: .7s;
 }
 
 #user_mini_top_div p{
@@ -169,8 +187,6 @@ a:hover{
 .container{
     background-color: #ffffff;
     left: 20vw;
-    /*height: 100px;*/
-    /*max-height: ;*/
     width: 850px;
     position: relative;
     border-radius: 3px;
@@ -255,6 +271,10 @@ a:hover{
 .bigger{
     font-size: 1.2em;
 }
+.post_block{
+    text-align: left;
+    display: block;
+}
 .post_header{
     min-height: 40px;
     position: relative;
@@ -271,6 +291,8 @@ a:hover{
     position: relative;
     background-color: #ffffff;
     border-radius: 3px;
+    overflow: hidden;
+    border-bottom: solid #E9EAEE 1px;
 }
 .add_comment_post_div{
     border-top: #E9EAEE 1px solid;
@@ -304,5 +326,20 @@ a:hover{
     background-color: #d1f0db;
 }
 .followup_comment_btn:active{
+    background-color: #88a08d;
+}
+.likebtn{
+    float:left;
+    width: 26px;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    border: none;
+    background-color: #f0f0f0;
+}
+.likebtn:hover{
+    background-color: #d1f0db;
+}
+.likebtn:active{
     background-color: #88a08d;
 }

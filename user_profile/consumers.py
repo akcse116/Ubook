@@ -27,4 +27,4 @@ class ChatConsumer(WebsocketConsumer):
         pass
 
     def receive(self, *, text_data):
-        print("Socket received " + "<get json and print here when you figure out how>")
+        print("Socket received: " + text_data)

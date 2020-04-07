@@ -17,7 +17,7 @@
     <script src="{% static 'user_profile/post_script.js' %}"></script>
     <script src="{% static 'user_profile/ws_script.js' %}"></script>
 </head>
-<body>
+<body onload="get_wall_posts()">
 <header>
     <div id="header_bar">
         <div id="main_logo">
@@ -33,7 +33,7 @@
             <div id="user_mini_top_div">
 
             <a href="/user_profile" ><img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>
-                <p>User Name</p></a>
+                <p class="user_pic_tag">User Name</p></a>
             </div>
             <div class="menu">
 
