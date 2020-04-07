@@ -4,3 +4,13 @@
 **/.idea
 /.idea
 /project.iml
+/blog/__pycache__/
+/blog/migrations/__pycache__/
+/django_project/__pycache__/
+/home/__pycache__/
+/home/migrations/__pycache__/
+/login/__pycache__/
+/login/migrations/__pycache__/
+/message/__pycache__/
+/user_profile/__pycache__/
+/user_profile/migrations/__pycache__/
