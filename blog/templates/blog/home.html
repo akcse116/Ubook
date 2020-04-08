@@ -27,7 +27,11 @@
            
             <div class = "post-content">
                 <div class ="post-box">
-                    <img src= "../../ {{post.media.url}}" >
+                    {% if post.media != None %}
+                        
+                        <img src= "{{post.media}}" >
+                    {% endif %}
+                    
                     {{post.content}} 
                 </div>
                 

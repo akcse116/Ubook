@@ -48,6 +48,8 @@ def createPost(request):
             'date': "0",
             'media': hasImg
         }))
+        record = Post(content=body)
+        record.save()
     return HttpResponse("received")
 
 

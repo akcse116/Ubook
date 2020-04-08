@@ -11,13 +11,15 @@ def home(request):
         body = request.POST['post-body']
         if request.FILES:
             media = request.FILES['post-media']
-            storage_file_path = settings.MEDIA_ROOT + media.name
+            storage_file_path = settings.MEDIA_ROOT + '/'+ media.name
+            print(storage_file_path)
             file_content = media.file.read()
             with open(storage_file_path, 'wb') as file:
                 file.write(file_content)
+            media = 'http://'+ request.META['SERVER_NAME'] + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media.name
         else:
             media = None
-        post = Post(title = 'title-1', content = body, media = media, author= User.objects.get(username='tiffany'))      
+        post = Post(title = 'title-1', content = body, media = media, author= User.objects.get(username='admin'))      
         post.save()
         
         
