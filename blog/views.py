@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post
-from django.contrib.auth.models import User
+from user_profile.models import User
 from django.conf import settings
 
 
@@ -17,7 +17,7 @@ def home(request):
                 file.write(file_content)
         else:
             media = None
-        post = Post(title = 'title-1', content = body, media = media, author= User.objects.get(username='superuser'))      
+        post = Post(title = 'title-1', content = body, media = media, author= User.objects.get(username='tiffany'))      
         post.save()
         
         
