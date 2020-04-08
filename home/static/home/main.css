@@ -6,6 +6,26 @@ body {
 h1{
     text-align: center;
 }
+.content{
+    border: 3px steelblue;
+}
+
+.log-form{
+    margin: auto;
+    margin-top: 20%;
+    display: block;
+    border: 3px solid blue;
+    text-align: center;
+    width:60%;
+}
+
+.sign-form{
+    margin: 5% auto auto auto;
+    display: block;
+    /*border: 3px solid orangered;*/
+    text-align: center;
+    width:80%;
+}
 #main_container{
     text-align: center;
 }
