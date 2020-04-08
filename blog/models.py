@@ -35,9 +35,7 @@ class Post(models.Model):
     # one-to-many relationship // one user can have multiple posts, but a post can only have 1 author
     # ForeignKey(related table, what to do if user who created post gets deleted - delete post)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # ----
-    #likes = models.ManyToManyField('self', symmetrical=False, null=True)
-    # ----
+    likes = models.IntegerField(default=0)
     parent_id = models.IntegerField()
 
     # return how we want Post to be printed out
