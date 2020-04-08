@@ -46,7 +46,12 @@ a{
 a:hover{
     cursor: pointer;
 }
-
+.warning{
+    color: red;
+    font-weight: 800;
+    font-size: 1.5rem;
+    visibility: hidden;
+}
 #header_bar{
     margin: 0 auto;
     width: 85%;
