@@ -2,6 +2,12 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
+from .models import Post
+from django.conf import settings
+from user_profile.models import User
+
 
 connected = {}
 
@@ -9,15 +15,41 @@ connected = {}
 def main(request, **kwargs):
     # print(request)
     # print("wa")
-    print(request)
-    print("aaaaa")
-    print(kwargs)
-    print(request['url_route']['kwargs'])
+    # print(request)
+    # print("aaaaa")
+    # print(kwargs)
+    # print(request['url_route']['kwargs'])
     cons = BlogConsumer(request)
     connected[request['client'][1]] = cons
     return cons
 
-#in dms (plan): when sent, include room name in client javascript
+
+def createPost(request):
+    body = request.POST['post-body']
+    hasImg = False  # if this is true, client will call http GET through AJAX to get the image
+    # if request.FILES:
+    #     hasImg = True
+    #     media = request.FILES['post-media']
+    #     storage_file_path = settings.MEDIA_ROOT + media.name
+    #     file_content = media.file.read()
+    #     with open(storage_file_path, 'wb') as file:
+    #         file.write(file_content)
+    # else:
+    #     media = None
+    # post = Post(title = 'title-1', content = body, media = media, author= User.objects.get(username='tiffany'))
+    # post.save()
+
+    #send post information via websockets
+    for i in connected.values():
+        i.send(text_data=json.dumps({
+            'type': 'post',
+            'body': body,
+            'author': "person",
+            'date': "0",
+            'media': hasImg
+        }))
+    return HttpResponse("received")
+
 
 
 class BlogConsumer(WebsocketConsumer):
@@ -26,7 +58,7 @@ class BlogConsumer(WebsocketConsumer):
         # print(self.scope['url_route']['kwargs'])
         # print(self.__dict__)
         self.name = self.scope['client'][1]
-        print("connect blog");
+        print("connect blog")
         self.accept()
 
     def disconnect(self, close_code):
@@ -36,14 +68,13 @@ class BlogConsumer(WebsocketConsumer):
 
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message = text_data_json['message']
-        print(message)
+        print(text_data_json)
 
-        for i in connected.values():
-            if i:
-                i.send(text_data=json.dumps({
-                    'message': message
-                }))
+        # for i in connected.values():
+        #     if i:
+        #         i.send(text_data=json.dumps({
+        #             'message': message
+        #         }))
         # self.send(text_data=json.dumps({
         #     'message': message
         # }))

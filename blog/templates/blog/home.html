@@ -5,7 +5,7 @@
 <div class= "content-container">
 
     <div id='write_post'>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form id="postinput" action="" method="POST" enctype="multipart/form-data" onsubmit="sendPost(); return false;">
             {% csrf_token %}
             <label for = "post-body">What's on your mind?  </label>
             <input id= "post-body" type="text" name="post-body"><br>
@@ -23,7 +23,7 @@
     
     {% for post in posts %}
 
-        <article class = "post" >
+        <article class = "post" id={{post.id}}>
            
             <div class = "post-content">
                 <div class ="post-box">
