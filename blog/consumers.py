@@ -58,6 +58,7 @@ class BlogConsumer(WebsocketConsumer):
         # print(self.scope['url_route']['kwargs'])
         # print(self.__dict__)
         self.name = self.scope['client'][1]
+        self.like = True
         print("connect blog")
         self.accept()
 
@@ -69,6 +70,17 @@ class BlogConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         print(text_data_json)
+
+        if text_data_json['type'] == 'like':
+            userlike = self.like
+            self.like = not self.like
+            for i in connected.values():
+                if i:
+                    i.send(text_data=json.dumps({
+                        'type': 'like',
+                        'id': text_data_json['id'],
+                        'status': userlike
+                    }))
 
         # for i in connected.values():
         #     if i:

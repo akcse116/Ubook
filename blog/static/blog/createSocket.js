@@ -32,6 +32,15 @@ socket.onmessage = function (e) {
             "                Published: " + info.date +
             "            </div>" +
             "        </article>"
+    }else if(info.type === 'like'){
+        const div = document.getElementById(info.id);
+        const button = div.querySelectorAll("div.interact")[0].querySelectorAll("button")[0];
+        console.log(button);
+        if(info.status){
+            button.style.backgroundColor = "blue";
+        }else{
+            button.style.backgroundColor = "white";
+        }
     }
 };
 
@@ -78,5 +87,16 @@ function sendPost(){
     //     textinput.value = "";
     //     file.value = "";
     // }
+}
+
+function sendLike(elem){
+    socket.send(JSON.stringify({
+        type: "like",
+        id: elem.parentNode.parentNode.parentNode.id
+    }));
+}
+
+function sendComment(){
+
 }
 

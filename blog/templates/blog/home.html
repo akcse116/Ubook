@@ -33,12 +33,12 @@
                 
                 <div class="interact">
                     
-                    <button class = "button" type="button">
+                    <button class = "button" type="button" onclick="sendLike(this);">
                         <i class ="emoji">&#128077;</i>
                     </button>
                     
                     
-                    <form>
+                    <form id="commentinput" action="" method="POST" enctype="multipart/form-data" onsubmit="sendComment();return false;">
                         <label for = "post-comment">comment: </label>
                         <input id= "post-comment" type="text" name="comment">
                         <input type="submit" value="comment"> 
