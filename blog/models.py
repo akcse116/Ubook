@@ -23,7 +23,7 @@ class Post(models.Model):
     # primary key identifier for Post object
     id = models.AutoField(primary_key=True)
     # max_length restraint
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, null=True, blank=True)
     # TextField similar to CharField but w/o restrictions
     content = models.TextField()
     # media field for media uploads. Store media path as char field.
@@ -34,7 +34,7 @@ class Post(models.Model):
     # pulls User from separate table created by django
     # one-to-many relationship // one user can have multiple posts, but a post can only have 1 author
     # ForeignKey(related table, what to do if user who created post gets deleted - delete post)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     likes = models.IntegerField(default=0)
     parent_id = models.IntegerField(null=True, blank=True)
 
