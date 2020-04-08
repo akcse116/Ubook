@@ -1,3 +1,10 @@
+/*
+*   gets and renders profile message wall
+*
+*   route: /profile_wall
+*
+* */
+
 function get_wall_posts(){
     let	request	=	new	XMLHttpRequest();
     request.onreadystatechange	=	function(){
@@ -8,6 +15,6 @@ function get_wall_posts(){
             /* console.log(this.response); */
         }
     };
-    request.open("GET",	window.location.host + "/post");
+    request.open("GET",	window.location.host + "/profile_wall");
     request.send();
 }
