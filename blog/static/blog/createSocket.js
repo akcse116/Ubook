@@ -1,11 +1,82 @@
 const socket = new WebSocket('ws://' + window.location.host + '/ws/blog');
 
 socket.onmessage = function (e) {
-    console.log(e.data);
-    const data = JSON.parse(e.data);
-    document.getElementById("messageLog").innerHTML += "<div class=\"otherMessage\">"+ data.message + "</div>"
+    const info = JSON.parse(e.data);
+    console.log(info);
+    if(info.type === 'post'){
+        let container = document.getElementsByClassName('posts')[0];
+        let img = "";
+        if(info.media){
+
+        }
+        container.innerHTML +=
+            "<article class = \"post\" >"+
+            "            <div class = \"post-content\">" +
+            "                <div class =\"post-box\">" +
+                                img +
+                                info.body +
+            "                </div>" +
+            "                <div class=\"interact\">" +
+            "                    <button class = \"button\" type=\"button\">" +
+            "                        <i class =\"emoji\">&#128077;</i>" +
+            "                    </button>" +
+            "                    <form>" +
+            "                        <label for = \"post-comment\">comment: </label>" +
+            "                        <input id= \"post-comment\" type=\"text\" name=\"comment\">" +
+            "                        <input type=\"submit\" value=\"comment\">" +
+            "                    </form>" +
+            "                </div>" +
+            "            </div>" +
+            "            <div class = \"post-meta\">" +
+                            info.author +
+            "                Published: " + info.date +
+            "            </div>" +
+            "        </article>"
+    }
 };
 
 socket.onopen = function (e) {
     console.log("connected")
 };
+
+function sendPost(){
+    const input = new FormData(document.getElementById("postinput"));
+    const file = document.querySelector('#post-media');
+    const reader = new FileReader();
+    const textinput = document.getElementById("post-body");
+
+    const upload = new XMLHttpRequest();
+    upload.onreadystatechange = function () {
+        if(this.readyState === 4 && this.status === 200){
+            console.log(this.response);
+        }
+    };
+
+    upload.open("POST", "/blog/createpost/");
+    upload.send(input);
+
+    textinput.value = "";
+    file.value = "";
+
+    // const body = {
+    //     text: input.get("post-body"),
+    //     media: ""
+    // };
+    //
+    // if(file.files[0] !== undefined){
+    //     reader.onloadend = function () {
+    //         body.media = JSON.stringify(reader.result);
+    //
+    //         socket.send(reader.result);
+    //         textinput.value = "";
+    //         file.value = "";
+    //     };
+    //
+    //     reader.readAsArrayBuffer(file.files[0]);
+    // }else{
+    //     socket.send(JSON.stringify(body));
+    //     textinput.value = "";
+    //     file.value = "";
+    // }
+}
+
