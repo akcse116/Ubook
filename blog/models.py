@@ -27,7 +27,7 @@ class Post(models.Model):
     # TextField similar to CharField but w/o restrictions
     content = models.TextField()
     # media field for media uploads. Store media path as char field.
-    media = models.CharField(max_length =100)
+    media = models.CharField(max_length =100, null=True, blank=True)
     # auto_now_add set date_posed to current date and time
     # can't ever update - won't allow for edits
     date_posted = models.DateTimeField(auto_now_add=True)
@@ -36,7 +36,7 @@ class Post(models.Model):
     # ForeignKey(related table, what to do if user who created post gets deleted - delete post)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)
-    parent_id = models.IntegerField()
+    parent_id = models.IntegerField(null=True, blank=True)
 
     # return how we want Post to be printed out
     def __str__(self):
