@@ -94,6 +94,12 @@ body {
     height: 10%;
     width: 80%;
 }
+
+.commentbox{
+    background-color: paleturquoise;
+    margin: 1%;
+}
+
 .line-break {
     display: flex; 
     width: 80%;

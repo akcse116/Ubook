@@ -1,5 +1,6 @@
 from channels.generic.websocket import WebsocketConsumer
-
+from blog.models import Post
+import json
 
 connected = {}
 
@@ -27,4 +28,36 @@ class ChatConsumer(WebsocketConsumer):
         pass
 
     def receive(self, *, text_data):
-        print("Socket received: " + text_data)
+        text_data_json = json.loads(text_data)
+        print(text_data_json)
+
+        if text_data_json['type'] == 'like':
+            changelike = Post.objects.get(id=int(text_data_json['id']))
+            if changelike.likes == 0:
+                changelike.likes += 1
+            else:
+                changelike.likes -= 1
+            userlike = bool(changelike.likes)
+            changelike.save()
+
+            for i in connected.values():
+                if i:
+                    i.send(text_data=json.dumps({
+                        'type': 'like',
+                        'id': text_data_json['id'],
+                        'status': userlike
+                    }))
+        elif text_data_json['type'] == 'comment':
+            record = Post(title="C", content=text_data_json['body'], parent_id=text_data_json['id'])
+            record.save()
+
+            for i in connected.values():
+                if i:
+                    i.send(text_data=json.dumps({
+                        'type': 'comment',
+                        'id': record.id,
+                        'parentid': record.parent_id,
+                        'date': str(record.date_posted),
+                        'body': text_data_json['body'],
+                        'author': str(record.author)
+                    }))
