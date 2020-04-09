@@ -15,4 +15,3 @@
 /user_profile/__pycache__/
 /user_profile/migrations/__pycache__/
 *__pycache__*
-db.sqlite3
