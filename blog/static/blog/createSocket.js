@@ -7,31 +7,35 @@ socket.onmessage = function (e) {
         let container = document.getElementsByClassName('posts')[0];
         let img = "";
         if(info.media){
-
+            console.log(info.medialink);
+            img = "<img src=" + info.medialink + " style=\"max-width: 300px; max-height: 300px\">";
         }
-        container.innerHTML +=
-            "<article class = \"post\" >"+
+        container.insertAdjacentHTML("afterbegin",
+            "<article class = \"post\" id=" + info.id + ">"+
             "            <div class = \"post-content\">" +
             "                <div class =\"post-box\">" +
-                                img +
+                                img + "<br>" +
                                 info.body +
             "                </div>" +
             "                <div class=\"interact\">" +
-            "                    <button class = \"button\" type=\"button\">" +
+            "                    <button class = \"button\" type=\"button\" onclick=\"sendLike(this);\">" +
             "                        <i class =\"emoji\">&#128077;</i>" +
             "                    </button>" +
-            "                    <form>" +
+            "                    <form id=\"commentinput\" action=\"\" method=\"POST\" enctype=\"multipart/form-data\" onsubmit=\"sendComment(this);return false;\">" +
             "                        <label for = \"post-comment\">comment: </label>" +
             "                        <input id= \"post-comment\" type=\"text\" name=\"comment\">" +
             "                        <input type=\"submit\" value=\"comment\">" +
             "                    </form>" +
             "                </div>" +
             "            </div>" +
+            "                    <div class=\"comments\">" +
+            "                     </div>" +
             "            <div class = \"post-meta\">" +
                             info.author +
             "                Published: " + info.date +
             "            </div>" +
             "        </article>"
+        );
     }else if(info.type === 'like'){
         const div = document.getElementById(info.id);
         const button = div.querySelectorAll("div.interact")[0].querySelectorAll("button")[0];
@@ -41,6 +45,13 @@ socket.onmessage = function (e) {
         }else{
             button.style.backgroundColor = "white";
         }
+    }else if(info.type === 'comment'){
+        const div = document.getElementById(info.parentid);
+        const commentsection = div.querySelectorAll('div.comments')[0];
+        commentsection.innerHTML += "<div class=\"commentbox\" id=" + info.id + ">" +
+                                        info.author + ": " + info.body +
+                                    "</div>";
+        console.log(info.body);
     }
 };
 
@@ -54,39 +65,23 @@ function sendPost(){
     const reader = new FileReader();
     const textinput = document.getElementById("post-body");
 
-    const upload = new XMLHttpRequest();
-    upload.onreadystatechange = function () {
-        if(this.readyState === 4 && this.status === 200){
-            console.log(this.response);
-        }
-    };
+    if(textinput.value || file.value){
+        const upload = new XMLHttpRequest();
+        upload.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                console.log(this.response);
+            }
+        };
 
-    upload.open("POST", "/blog/createpost/");
-    upload.send(input);
+        upload.open("POST", "/blog/createpost/");
+        upload.send(input);
 
-    textinput.value = "";
-    file.value = "";
+        textinput.value = "";
+        file.value = "";
+    }else{
+        console.log("there's nothing!")
+    }
 
-    // const body = {
-    //     text: input.get("post-body"),
-    //     media: ""
-    // };
-    //
-    // if(file.files[0] !== undefined){
-    //     reader.onloadend = function () {
-    //         body.media = JSON.stringify(reader.result);
-    //
-    //         socket.send(reader.result);
-    //         textinput.value = "";
-    //         file.value = "";
-    //     };
-    //
-    //     reader.readAsArrayBuffer(file.files[0]);
-    // }else{
-    //     socket.send(JSON.stringify(body));
-    //     textinput.value = "";
-    //     file.value = "";
-    // }
 }
 
 function sendLike(elem){
@@ -96,7 +91,14 @@ function sendLike(elem){
     }));
 }
 
-function sendComment(){
-
+function sendComment(elem){
+    const input = elem.querySelector("#post-comment");
+    const id = elem.parentNode.parentNode.parentNode.id;
+    socket.send(JSON.stringify({
+        type: "comment",
+        id: id,
+        body: input.value
+    }));
+    input.value = ""
 }
 

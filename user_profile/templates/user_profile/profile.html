@@ -31,64 +31,138 @@
 
     <div id="feed_wall">
 
-        <div class="container">
-            <div class="post_block">
+        {% for post in posts %}
+        <div class="container" >
+            <div class="post_block" id={{post.0.id}}>
                 <div class="post_header">
                     <img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>
 
-                    <p>User Name</p>
+                    <p>{{post.0.author}}</p>
 
                 </div>
 
                 <div class="post">
+                    {% if post.0.media != None %}
+
+                    <img src= "{{post.0.media}}" style="max-width: 300px; max-height: 300px"><br>
+
+                    {% endif %}
                     <p>
-                        This is definitely my fave part of the year. Don't you just love quarantine season?
+                        {{post.0.content}}
                     </p>
-                    <button class="likebtn"><img class="likebtn" src="{% static 'user_profile/like.png' %}"></button>
+
+                    {% if post.0.likes == 1 %}
+                    <button class="likebtn" onclick="sendLike(this);" style="background-color: blue">
+                        <img class="likebtn" src="{% static 'user_profile/like.png' %}">
+                    </button>
+                    {% else %}
+                    <button class="likebtn" onclick="sendLike(this);">
+                        <img class="likebtn" src="{% static 'user_profile/like.png' %}">
+                    </button>
+                    {% endif %}
+
+                </div>
+                <br><br>
+                <div class="comments">
+                    {% for comment in post.1 %}
+
+                    <div class="commentbox" id={{comment.id}}>
+                        <div class="post_header">
+<!--                            <img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>-->
+
+                            <p>{{comment.author}}</p>
+
+                        </div>
+                        <div class="post">
+                            <p>
+                                {{comment.content}}
+                            </p>
+<!--                            {% if comment.likes == 1 %}-->
+<!--                                <button class="likebtn" onclick="sendLike(this);" style="background-color: blue">-->
+<!--                                    <img class="likebtn" src="{% static 'user_profile/like.png' %}">-->
+<!--                                </button>-->
+<!--                            {% else %}-->
+<!--                                <button class="likebtn" onclick="sendLike(this);" style="background-color: #f0f0f0">-->
+<!--                                    <img class="likebtn" src="{% static 'user_profile/like.png' %}">-->
+<!--                                </button>-->
+<!--                            {% endif %}-->
+                        </div>
+                    </div>
+
+                    {% endfor %}
                 </div>
 
-                <div class="post_header">
-                    <img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>
-
-                    <p>Friend</p>
-
+                <div class="add_comment_post_div">
+                    <textarea class="followup" id="followup1"></textarea>
+                    <button class="followup_comment_btn" onclick="sendComment(this);">Comment</button>
                 </div>
-                <div class="post">
-                    <p>
-                        FR FR?
-                    </p>
-                    <button class="likebtn"><img class="likebtn" src="{% static 'user_profile/like.png' %}"></button>
-                </div>
+
             </div>
-            <div class="add_comment_post_div">
-                <!--            <input type="text" class="followup" id="followup1">-->
-                <textarea class="followup" id="followup1"></textarea>
-                <button class="followup_comment_btn" onclick="send_followup('followup1')">Comment</button>
-            </div>
+
 
         </div>
-        <div class="container">
-            <div class="post_block">
-                <div class="post_header">
 
-                    <img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>
+        {% endfor %}
 
-                    <p>Friend</p>
-                </div>
-                <div class="post">
-                    <p>
-                        D's get degrees. Know what I'm sayin?
-                    </p>
-                    <button class="likebtn"><img class="likebtn" src="{% static 'user_profile/like.png' %}"></button>
-                </div>
-            </div>
 
-            <div class="add_comment_post_div">
-                <!--            <input type="text" class="followup" id="followup1">-->
-                <textarea class="followup" id="followup2"></textarea>
-                <button class="followup_comment_btn" onclick="send_followup('followup2')">Comment</button>
-            </div>
-        </div>
+<!--        <div class="container">-->
+<!--            <div class="post_block">-->
+<!--                <div class="post_header">-->
+<!--                    <img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>-->
+
+<!--                    <p>User Name</p>-->
+
+<!--                </div>-->
+
+<!--                <div class="post">-->
+<!--                    <p>-->
+<!--                        This is definitely my fave part of the year. Don't you just love quarantine season?-->
+<!--                    </p>-->
+<!--                    <button class="likebtn"><img class="likebtn" src="{% static 'user_profile/like.png' %}"></button>-->
+<!--                </div>-->
+
+<!--                <div class="post_header">-->
+<!--                    <img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>-->
+
+<!--                    <p>Friend</p>-->
+
+<!--                </div>-->
+<!--                <div class="post">-->
+<!--                    <p>-->
+<!--                        FR FR?-->
+<!--                    </p>-->
+<!--                    <button class="likebtn"><img class="likebtn" src="{% static 'user_profile/like.png' %}"></button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="add_comment_post_div">-->
+<!--                &lt;!&ndash;            <input type="text" class="followup" id="followup1">&ndash;&gt;-->
+<!--                <textarea class="followup" id="followup1"></textarea>-->
+<!--                <button class="followup_comment_btn" onclick="send_followup('followup1')">Comment</button>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--        <div class="container">-->
+<!--            <div class="post_block">-->
+<!--                <div class="post_header">-->
+
+<!--                    <img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>-->
+
+<!--                    <p>Friend</p>-->
+<!--                </div>-->
+<!--                <div class="post">-->
+<!--                    <p>-->
+<!--                        D's get degrees. Know what I'm sayin?-->
+<!--                    </p>-->
+<!--                    <button class="likebtn"><img class="likebtn" src="{% static 'user_profile/like.png' %}"></button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="add_comment_post_div">-->
+<!--                &lt;!&ndash;            <input type="text" class="followup" id="followup1">&ndash;&gt;-->
+<!--                <textarea class="followup" id="followup2"></textarea>-->
+<!--                <button class="followup_comment_btn" onclick="send_followup('followup2')">Comment</button>-->
+<!--            </div>-->
+<!--        </div>-->
 
 
     </div>

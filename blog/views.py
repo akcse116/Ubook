@@ -19,14 +19,23 @@ def home(request):
             media = 'http://'+ request.META['SERVER_NAME'] + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media.name
         else:
             media = None
-        post = Post(title = 'title-1', content = body, media = media, author= User.objects.get(username='admin'))      
+        post = Post(title = 'title-1', content = body, media = media, author= User.objects.get(username='admin'))
         post.save()
-        
-        
         
     else:
         None
 
-    context = {'posts': Post.objects.order_by('date_posted').reverse()}
+    posts = Post.objects.filter(parent_id=None).order_by('date_posted').reverse()
+    context = {
+        'posts': []
+    }
+
+    for i in posts:
+        comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
+        if comments:
+            context['posts'].append([i, comments])
+        else:
+            context['posts'].append([i, []])
+
     return render(request, 'blog/home.html', context)
 
