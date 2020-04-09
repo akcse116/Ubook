@@ -40,6 +40,8 @@ function do_signup() {
     }
 }
 
+
+
 function do_login(){
     /*let warn = document.getElementsByClassName('warning');*/
     let user = document.getElementById("login_username");
@@ -58,7 +60,7 @@ function do_login(){
                 /*if input deemed invalid inform user and reprompt else user is redirected*/
             }
         };
-        request.open("POST",	window.location.host + "/user_signup");
+        request.open("POST",	window.location.host + "/user_login");
         let	data	=	{'user': user.value, 'password': pass.value};
         request.send(JSON.stringify(data));
     }
