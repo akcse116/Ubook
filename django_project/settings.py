@@ -92,9 +92,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ubook_db',
         'USER': 'admin',
-        'PASSWORD': '',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '8000'
+        'PASSWORD': 'wh-eJ89*8N',
+        'HOST': 'ubook-db.c7yahtelq3bh.us-east-1.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306'
     }
 }
 
