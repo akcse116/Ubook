@@ -44,6 +44,7 @@ user = 'person0'
 
 
 def home(request):
+
     context = {
         'messages': messages,
         'log': logs[('person0', 'person2')],

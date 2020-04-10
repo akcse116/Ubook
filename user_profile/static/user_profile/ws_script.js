@@ -35,6 +35,37 @@ socket.onmessage = function (e) {
             "   </div>" +
             "</div>";
         console.log(info.body);
+    }else if(info.type === 'post'){
+        let container = document.getElementById("feed_wall");
+        let img = "";
+        if(info.media){
+            img = "<img src=" + info.medialink + " style=\"max-width: 300px; max-height: 300px\">";
+        }
+        container.insertAdjacentHTML("afterbegin",
+            "<div class=\"container\" >" +
+            "            <div class=\"post_block\" id="+ info.id + ">" +
+            "                <div class=\"post_header\">" +
+                                img +
+            "                    <p>" + info.author + "</p>" +
+            "                </div>" +
+            "                <div class=\"post\">" +
+            "                    <p>" +
+                                    info.body +
+            "                    </p>" +
+            "                    <button class=\"likebtn\" onclick=\"sendLike(this);\">" +
+            "                        <i class =\"emoji\">&#128077;</i>" +
+            "                    </button>" +
+            "                </div>" +
+            "                <br><br>" +
+            "                <div class=\"comments\">" +
+            "                </div>" +
+            "                <div class=\"add_comment_post_div\">" +
+            "                    <textarea class=\"followup\" id=\"followup1\"></textarea>" +
+            "                    <button class=\"followup_comment_btn\" onclick=\"sendComment(this);\">Comment</button>" +
+            "                </div>" +
+            "            </div>" +
+            "        </div>"
+            );
     }
 };
 
