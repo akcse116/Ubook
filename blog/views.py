@@ -11,21 +11,25 @@ def home(request):
     if request.method == 'POST':
         body = request.POST['post-body']
         if request.FILES:
+            media = request.FILES['post-media']
             media_ID = random.randrange(1000000)
             media_type = media.name.split('.')[1]
-            media_name = 'upload_'+ str(media_ID) +'.'+ media_type  
-            storage_file_path = settings.MEDIA_ROOT + '/'+ media_name
-            print(storage_file_path)
+            upload_name = 'upload_'+ str(media_ID) +'.'+ media_type
+            media_name = 'http://'+ 'localhost' + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + upload_name 
+            while Post.objects.filter(media = media_name):
+                media_ID = random.randrange(1000000)
+                media_type = media.name.split('.')[1]
+                upload_name = 'upload_'+ str(media_ID) +'.'+ media_type
+                media_name = 'http://'+ 'localhost' + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + upload_name  
+            storage_file_path = settings.MEDIA_ROOT + '/'+ upload_name
             file_content = media.file.read()
             with open(storage_file_path, 'wb') as file:
                 file.write(file_content)
-            media = 'http://'+ 'localhost' + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media_name
-            print('media ', media)
-            # media = 'http://'+ request.META['SERVER_NAME'] + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media.name
+        # media = 'http://'+ request.META['SERVER_NAME'] + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media.name
         else:
             media = None
-        post = Post(title = 'title-1', content = body, media = media, author= User.objects.get(username='admin'))
-        post.save()
+            record = Post(title="A", content=body, media=media_name)
+            record.save()
         
     else:
         None
