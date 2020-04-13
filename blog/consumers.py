@@ -1,5 +1,6 @@
 # # message/consumers.py
 import json
+import random
 from channels.generic.websocket import WebsocketConsumer
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -24,11 +25,15 @@ def createPost(request):
     if request.FILES:
         hasImg = True
         media = request.FILES['post-media']
-        storage_file_path = settings.MEDIA_ROOT + '/'+ media.name
+        media_ID = random.randrange(1000000)
+        media_type = media.name.split('.')[1]
+        media_name = 'upload_'+ str(media_ID) +'.'+ media_type  
+        storage_file_path = settings.MEDIA_ROOT + '/'+ media_name
         file_content = media.file.read()
         with open(storage_file_path, 'wb') as file:
             file.write(file_content)
-        media = 'http://'+ 'localhost' + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media.name
+        media = 'http://'+ 'localhost' + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media_name
+        print('media ', media)
         # media = 'http://'+ request.META['SERVER_NAME'] + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media.name
     else:
         media = None
