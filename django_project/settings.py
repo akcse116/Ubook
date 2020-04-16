@@ -93,7 +93,7 @@ DATABASES = {
         'NAME': 'ubook_db',
         'USER': 'admin',
         'PASSWORD': os.environ['MYSQL_PASSWORD'],
-        # 'PASSWORD': 'wh-eJ89*8N',
+        # 'PASSWORD': '',
         'HOST': 'db',   # use this version in docker
         # 'HOST': 'localhost', # Or an IP Address that your DB is hosted on
         'PORT': '3306'

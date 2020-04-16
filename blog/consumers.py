@@ -20,7 +20,7 @@ def main(request):
 
 def createPost(request):
     body = request.POST['post-body']
-    print(request.META['SERVER_NAME'] + ':'+ request.META['SERVER_PORT'])
+    print(request.META['HTTP_HOST'])
     hasImg = False  # if this is true, client will call http GET through AJAX to get the image
     if request.FILES:
         hasImg = True
@@ -28,12 +28,12 @@ def createPost(request):
         media_ID = random.randrange(1000000)
         media_type = media.name.split('.')[1]
         upload_name = 'upload_'+ str(media_ID) +'.'+ media_type
-        media_name = 'http://'+ 'localhost' + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + upload_name 
+        media_name = 'http://'+ request.META['HTTP_HOST'] + settings.MEDIA_URL + upload_name
         while Post.objects.filter(media = media_name):
             media_ID = random.randrange(1000000)
             media_type = media.name.split('.')[1]
             upload_name = 'upload_'+ str(media_ID) +'.'+ media_type
-            media_name = 'http://'+ 'localhost' + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + upload_name  
+            media_name = 'http://'+ request.META['HTTP_HOST'] + settings.MEDIA_URL + upload_name
         storage_file_path = settings.MEDIA_ROOT + '/'+ upload_name
         file_content = media.file.read()
         with open(storage_file_path, 'wb') as file:
@@ -41,6 +41,7 @@ def createPost(request):
     # media = 'http://'+ request.META['SERVER_NAME'] + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media.name
     else:
         media = None
+        media_name = None
     record = Post(title="A", content=body, media=media_name)
     record.save()
 

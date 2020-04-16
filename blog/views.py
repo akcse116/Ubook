@@ -46,5 +46,8 @@ def home(request):
         else:
             context['posts'].append([i, []])
 
+    print(request.META['HTTP_HOST'] + ':'+ request.META['SERVER_PORT'])
+    print('aaaaa')
+
     return render(request, 'blog/home.html', context)
 
