@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel ="stylesheet" type="text/css" href = "{% static 'blog/main.css' %}">
     <script src="{% static 'blog/createSocket.js' %}"></script>
+    <script src="{% static 'blog/ajax.js' %}"></script>
     <style>
 
         .content{
@@ -51,7 +52,11 @@
         <a href = "/message">
             Message
         </a>
-    </div> 
+    </div>
+    <div id="logout">
+        <button class="logout_btn" onclick="logout_user()">Log out</button>
+
+    </div>
    
 
   <div class = "container">
