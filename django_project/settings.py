@@ -92,10 +92,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ubook_db',
         'USER': 'admin',
-        'PASSWORD': os.environ['MYSQL_PASSWORD'],
-        # 'PASSWORD': '',
-        'HOST': 'db',   # use this version in docker
-        # 'HOST': 'localhost', # Or an IP Address that your DB is hosted on
+        #'PASSWORD': os.environ['MYSQL_PASSWORD'],
+        'PASSWORD': 'wh-eJ89*8N',
+        #'HOST': 'db',   # use this version in docker
+         'HOST': 'ubook-db.c7yahtelq3bh.us-east-1.rds.amazonaws.com',
         'PORT': '3306'
     }
 }

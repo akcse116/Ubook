@@ -1,6 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
+from user_profile.models import User
+
 
 
 # represent database structure as classes
@@ -41,3 +42,7 @@ class Post(models.Model):
     # return how we want Post to be printed out
     def __str__(self):
         return self.title
+
+
+class Friend(models.Model):
+    users = models.ManyToManyField(User)
