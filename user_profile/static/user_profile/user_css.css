@@ -49,7 +49,7 @@ a:hover{
 }
 #header_bar{
     margin: 0 auto;
-    width: 85vw;
+    width: 90vw;
 }
 #main_logo{
     width: 50%;
@@ -57,15 +57,16 @@ a:hover{
     margin-top: 1.1%;
 
 }
+#logout{}
 
 #login{
-    width: 50%;
+    width: 40%;
     float: right;
     margin-top: 30px;
     display: none;
 }
 #logged_in{
-    width: 50%;
+    width: 40%;
     float: left;
     margin-top: 2.8%;
     font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
@@ -164,6 +165,21 @@ a:hover{
 #login_btn:hover{
     background-color: #3B5998;
 }
+.logout_btn{
+    color: #FFFFFF;
+    float: left;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #3864bc;
+    border: solid 1px #303030;
+    padding: 2px;
+    width: 60px;
+}
+.logout_btn:hover{
+    background-color: #3B5998;
+}
 #cover{
     margin-top: 0;
     background-image: url("{% static 'user_profile/profile_bg.jpg' %}");
@@ -196,6 +212,7 @@ a:hover{
 }
 
 #info_footer{
+    text-align: center;
     background-color: inherit;
     height: 35px;
     position: absolute;
@@ -257,8 +274,16 @@ a:hover{
 .profile_btn p{
     margin-top: 5px;
 }
-#about_btn{
-    margin-left: 210px;
+/*#about_btn{*/
+/*    margin-left: 210px;*/
+/*}*/
+.prof_padding{
+    width: 25%;
+    height: 95%;
+    float: left;
+    bottom: 0;
+
+    /*overflow: hidden;*/
 }
 #friend_request{
     border-right: 1px #202020 solid;

@@ -121,3 +121,18 @@ body {
 .button {
     background-color: whitesmoke;
 }
+.logout_btn{
+    color: #FFFFFF;
+    float: left;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #3864bc;
+    border: solid 1px #303030;
+    padding: 2px;
+    width: 60px;
+}
+.logout_btn:hover{
+    background-color: #3B5998;
+}
