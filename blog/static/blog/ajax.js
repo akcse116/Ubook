@@ -5,6 +5,6 @@ function logout_user() {
             window.location.replace("/");
         }
     };
-    logout_request.open("POST", window.location.host + "/user_logout");
+    logout_request.open("POST",  "/user_logout");
     logout_request.send(JSON.stringify({"cookies" : document.cookie}));
 }
