@@ -3,8 +3,8 @@ version: '3'
 services:
   db:
     image: mysql:8.0
-    ports:
-      - '3308:3306'
+#    ports:
+#      - '3308:3306'
     environment:
       MYSQL_DATABASE: 'ubook_db'
       MYSQL_USER: 'admin'
@@ -15,7 +15,7 @@ services:
     volumes:
       - .:/root
     ports:
-      - "8600:8600"
+      - "8600:8000"
     environment:
       WAIT_HOSTS: db:3306
       WAIT_HOST_TIMEOUT: 5
