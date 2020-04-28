@@ -14,7 +14,7 @@ socket.onmessage = function (e) {
         const button = div.querySelectorAll("div.post")[0].querySelectorAll("button")[0];
         console.log(button);
         if(info.status){
-            button.style.backgroundColor = "blue";
+            button.style.backgroundColor = "#65ff74";
         }else{
             button.style.backgroundColor = "#f0f0f0";
         }
