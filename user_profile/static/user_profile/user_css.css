@@ -66,7 +66,7 @@ a:hover{
     display: none;
 }
 #logged_in{
-    width: 40%;
+    width: 50%;
     float: left;
     margin-top: 2.8%;
     font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
@@ -366,5 +366,5 @@ a:hover{
     background-color: #d1f0db;
 }
 .likebtn:active{
-    background-color: #88a08d;
+    background-color: #65ff74;
 }
