@@ -3,7 +3,6 @@ from django.conf import settings
 from user_profile.models import User
 
 
-
 # represent database structure as classes
 # classes are called models
 # django already has user model created that we will use
@@ -35,7 +34,7 @@ class Post(models.Model):
     # pulls User from separate table created by django
     # one-to-many relationship // one user can have multiple posts, but a post can only have 1 author
     # ForeignKey(related table, what to do if user who created post gets deleted - delete post)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     likes = models.IntegerField(default=0)
     parent_id = models.IntegerField(null=True, blank=True)
 
