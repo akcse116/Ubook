@@ -31,20 +31,21 @@
                 Message
             </a>
         </div>
-        <div id="login">
+        <form id="login" action="/login" method="POST" enctype="multipart/form-data" onsubmit="login_user();return false;">
+            {% csrf_token %}
             <div id="username_div">
-                <label>Username</label>
+                <label>E-mail</label>
                 <br>
-                <input type="text" id="login_username" placeholder="Login">
+                <input type="text" id="login_username" placeholder="Login" name="email">
             </div>
             <div id="pass_div">
                 <label>Password</label>
                 <br>
-                <input type="login_password" id="password" placeholder="Password">
+                <input type="login_password" id="login_password" placeholder="Password" name="password">
             </div>
-            <button id="login_btn" onclick="login_user()">Log In</button>
-
-        </div>
+            <input type="submit" id="login_btn" value="Log In">
+            <p id="invalid" style="display: none; color: red">Invalid E-mail/Password</p>
+        </form>
 
     </div>
 </header>
