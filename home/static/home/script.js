@@ -1,15 +1,15 @@
-/*
+/**
 *   Handling of user signup and login
 *
-*   Signup function do_signup() communicates on route '/user_signup'
+*   Signup function user_signup() communicates on route '/signup'
 *
-*   Login function do_login() cummunicates on route '/user_login'
+*   Login function login_user() communicates on route '/login'
 *
 *
 * */
 
 
-function do_signup() {
+function user_signup() {
     let warn = document.getElementsByClassName('warning');
     let fname = document.getElementById("firstname");
     let lname = document.getElementById("lastname");
@@ -23,15 +23,15 @@ function do_signup() {
         lname.value = '';
         email.value = '';
         pass.value = '';
-        let	request	=	new	XMLHttpRequest();
-        request.onreadystatechange	=	function(){
-            if	(this.readyState	===	4	&&	this.status	===	200){
+        let	request	= new XMLHttpRequest();
+        request.onreadystatechange = function(){
+            if (this.readyState === 4 && this.status ===	200){
                 console.log(this.response);
-                //	Do	something	with	the	response
+                /*	Do	something	with	the	response*/
                 /*if input deemed invalid inform user and reprompt else user is redirected*/
             }
         };
-        request.open("POST",	window.location.host + "/user_signup");
+        request.open("POST", window.location.host + "/signup");
         let	data	=	{'first': fname.value, 'last': lname.value,	'email': email.value, 'password': pass.value};
         request.send(JSON.stringify(data));
     }
@@ -42,7 +42,7 @@ function do_signup() {
 
 
 
-function do_login(){
+function login_user(){
     /*let warn = document.getElementsByClassName('warning');*/
     let user = document.getElementById("login_username");
     let pass = document.getElementById("login_password");
@@ -52,16 +52,16 @@ function do_login(){
         }*/
         user.value = '';
         pass.value = '';
-        let	request	=	new	XMLHttpRequest();
-        request.onreadystatechange	=	function(){
-            if	(this.readyState	===	4	&&	this.status	===	200){
+        let	request	= new XMLHttpRequest();
+        request.onreadystatechange = function(){
+            if	(this.readyState === 4 && this.status === 200){
                 console.log(this.response);
                 //	Do	something	with	the	response
                 /*if input deemed invalid inform user and reprompt else user is redirected*/
             }
         };
-        request.open("POST",	window.location.host + "/user_login");
-        let	data	=	{'user': user.value, 'password': pass.value};
+        request.open("POST", window.location.host + "/ login");
+        let	data = {'user': user.value, 'password': pass.value};
         request.send(JSON.stringify(data));
     }
     else{
