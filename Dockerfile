@@ -11,7 +11,7 @@ RUN apt-get install -y python3-pip
 RUN apt-get install -y mysql-client
 
 COPY . .
-EXPOSE 8600
+EXPOSE 8000
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
 
@@ -22,4 +22,4 @@ RUN pip3 install pillow
 RUN pip3 install django-mysql
 
 
-CMD /wait && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8600
+CMD /wait && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000

@@ -23,6 +23,8 @@ function addToLog(){
     // }
     message.focus();
     socket.send(JSON.stringify({
+        'sender': "a",
+        'recepient': "b",
         'message': val
     }));
 }

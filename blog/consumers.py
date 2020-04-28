@@ -83,10 +83,7 @@ class BlogConsumer(WebsocketConsumer):
 
         if text_data_json['type'] == 'like':
             changelike = Post.objects.get(id=int(text_data_json['id']))
-            if changelike.likes == 0:
-                changelike.likes = 1
-            else:
-                changelike.likes = 0
+            changelike.likes = changelike.likes + 1
             userlike = bool(changelike.likes)
             changelike.save()
 
