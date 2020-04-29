@@ -49,8 +49,6 @@ function login_user(){
     let user = document.getElementById("login_username");
     let pass = document.getElementById("login_password");
 
-    user.value = '';
-    pass.value = '';
     let	request	= new XMLHttpRequest();
     const input = new FormData(document.getElementById("login"));
     request.onreadystatechange = function(){
@@ -58,6 +56,14 @@ function login_user(){
             console.log(this.response);
             //	Do	something	with	the	response
             /*if input deemed invalid inform user and reprompt else user is redirected*/
+            user.value = '';
+            pass.value = '';
+            if(this.response !== 'invalid login'){
+                window.location = window.location + 'blog/';
+                document.getElementById('invalid').style.display = "none";
+            }else{
+                document.getElementById('invalid').style.display = "block";
+            }
         }
     };
     request.open("POST", window.location + "login/");
