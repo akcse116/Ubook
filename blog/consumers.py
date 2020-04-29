@@ -38,7 +38,6 @@ def createPost(request):
         file_content = media.file.read()
         with open(storage_file_path, 'wb') as file:
             file.write(file_content)
-    # media = 'http://'+ request.META['SERVER_NAME'] + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media.name
     else:
         media = None
         media_name = None

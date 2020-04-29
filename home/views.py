@@ -4,6 +4,7 @@ import string
 from user_profile.models import User
 import bcrypt
 
+
 def home(request):
     return render(request, 'home/welcome.html')
 

@@ -7,31 +7,6 @@ messages = [
         'lastmessage': 'hi',
         'lastsent': 'Jan. 1, 2020'
     },
-    # {
-    #     'user': 'person2',
-    #     'lastmessage': 'hello',
-    #     'lastsent': 'Jan. 1, 2020'
-    # },
-    # {
-    #     'user': 'person3',
-    #     'lastmessage': 'oh nooooooooooo whyyyyy',
-    #     'lastsent': 'Jan. 1, 2020'
-    # },
-    # {
-    #     'user': 'person3',
-    #     'lastmessage': 'oh nooooooooooo whyyyyy',
-    #     'lastsent': 'Jan. 1, 2020'
-    # },
-    # {
-    #     'user': 'person3',
-    #     'lastmessage': 'oh nooooooooooo whyyyyy',
-    #     'lastsent': 'Jan. 1, 2020'
-    # },
-    # {
-    #     'user': 'person3',
-    #     'lastmessage': 'oh nooooooooooo whyyyyy',
-    #     'lastsent': 'Jan. 1, 2020'
-    # }
 ]
 
 test = open('message/templates/message/person0___person2.txt', 'r').read()
@@ -52,3 +27,6 @@ def home(request):
     }
     return render(request, 'message/chatlog.html', context)
 
+# get user's token from request's cookie, search it up on db
+# get first message where this person is either sender or receiver, display their log
+# get other messages where this person is either sender or receiver, put the other user in the messages list
