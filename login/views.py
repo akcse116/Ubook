@@ -17,7 +17,9 @@ def home(request):
         token = gentoken()
         token = base64.standard_b64encode(hashlib.sha256(token.encode()).digest()).decode()
         print(token)
-        User.objects.get(email=email).token = token
+        user = User.objects.get(email=email)
+        user.token = token
+        user.save()
         response = HttpResponse("setting cookie")
         response.set_cookie('auth_cookie', token)
         return response

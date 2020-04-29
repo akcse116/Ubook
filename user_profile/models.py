@@ -8,4 +8,4 @@ class User(AbstractUser):
     friends = models.ManyToManyField('self', blank=True)
 
     def __str__(self):
-        return self.username
+        return str(self.username) if self.username else ''
