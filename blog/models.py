@@ -43,6 +43,7 @@ class Post(models.Model):
         return str(self.title) if self.title else ''
 
 
+""""
 class Friend(models.Model):
     users = models.ManyToManyField(User)    #everyone else
 
@@ -59,3 +60,4 @@ class Friend(models.Model):
             current_user=current_user
         )
         friend.users.remove(new_friend)
+"""
