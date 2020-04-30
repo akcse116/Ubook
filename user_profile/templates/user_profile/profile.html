@@ -100,7 +100,19 @@
 
     </div>
     <div style="height: 50px"></div>
-    <div class="notifications">asdfasdf</div>
+    <div id="notifications">
+        <div id="notificationlabel">
+            <p>Notifications</p>
+        </div>
+        <div id="notificationcontent">
+            {% for notif in unseen %}
+            <div class="note">
+                <p class="notifuser"> {{ notif.author.username }} </p>
+                <b>{{ notif.author.first_name }} {{ notif.author.last_name }}</b>: {{ notif.content }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
 
 </main>

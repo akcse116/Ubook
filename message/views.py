@@ -6,6 +6,7 @@ from django.db.models import Q
 import json
 import hashlib
 import base64
+import blog.consumers
 
 
 def home(request):
@@ -69,11 +70,22 @@ def switchconvo(request, user):
 
     full = []
     for i in currentchatlog:
-        if not i.seen:
+        if not i.seen and i.recipient == currentuser:
             i.seen = True
             i.save()
         full.append((i.author.username, i.content))
     # full = [(i.author.username, i.content) for i in currentchatlog]
+    recipient = currentuser.username
+    sender = user.username
+    print(blog.consumers.usersockets)
+    print(user.username)
+    if recipient in blog.consumers.usersockets:
+        for i in blog.consumers.usersockets[recipient]:
+            if i in blog.consumers.connected and blog.consumers.connected[i]:
+                blog.consumers.connected[i].send(text_data=json.dumps({
+                    'type': 'seen',
+                    'sender': sender
+                }))
     if full:
         response = json.dumps(full)
         response = HttpResponse(response)

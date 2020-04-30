@@ -20,6 +20,11 @@ function wsHanshake(){
                     document.getElementById("messageLog").innerHTML += "<div class=\"yourMessage\">"+ data.message + "</div>"
                 }else if (data.sender === currentId){
                     document.getElementById("messageLog").innerHTML += "<div class=\"otherMessage\">"+ data.message + "</div>"
+                    socket.send(JSON.stringify({
+                        'type': 'seen',
+                        'sender': data.sender,
+                        'recipient': userId
+                    }))
                 }else{
                     document.getElementById("notificationcontent").innerHTML += (
                         "<div class=\"note\">\n" +
@@ -52,6 +57,7 @@ function addToLog(){
     // }
     message.focus();
     socket.send(JSON.stringify({
+        'type': 'message',
         'sender': document.getElementById('userId').innerText,
         'recipient': document.getElementById('currentId').innerText,
         'message': val
@@ -85,13 +91,18 @@ function switchConvo(event){
                         }
                     }
                     const notes = document.getElementsByClassName('note');
-                    const notifications = document.getElementById('notifications');
+                    const notifications = document.getElementById('notificationcontent');
+                    console.log(notes.length);
+                    let newnotif = '';
                     for(let i of notes){
                         const user = i.querySelector('.notifuser').innerText;
-                        if(user === idtracker.innerText){
-                            i.remove();
+                        console.log(user);
+                        console.log(idtracker.innerText);
+                        if(user !== idtracker.innerText){
+                            newnotif += i.outerHTML;
                         }
                     }
+                    notifications.innerHTML = newnotif;
                 }
             }
         };

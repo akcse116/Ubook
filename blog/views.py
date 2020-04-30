@@ -1,10 +1,13 @@
 import random
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Post
 from user_profile.models import User
+from message.models import Message
+from django.db.models import Q
 from django.conf import settings
-
+import base64
+import hashlib
 
 
 def home(request):
@@ -35,11 +38,18 @@ def home(request):
         None
 
 
-
     posts = Post.objects.filter(parent_id=None).order_by('date_posted').reverse()
     context = {
-        'posts': []
+        'posts': [],
+        'unseen': []
     }
+
+    if request.COOKIES.get('auth_cookie'):
+        token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
+        print(token)
+        user = User.objects.filter(token=token).first()
+        if user:
+            context['unseen'] = Message.objects.filter(Q(recipient=user) & Q(seen=False))
 
     for i in posts:
         comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')

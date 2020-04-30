@@ -5,7 +5,7 @@ from channels.generic.websocket import WebsocketConsumer
 from django.shortcuts import render, redirect
 # from django.shortcuts import render
 from .models import Message
-from blog.consumers import BlogConsumer
+import blog.consumers
 from user_profile.models import User
 import hashlib
 import base64
@@ -88,37 +88,62 @@ class ChatConsumer(WebsocketConsumer):
 
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message = text_data_json['message']
-        sender = text_data_json['sender']
-        recipient = text_data_json['recipient']
+        if text_data_json['type'] == 'message':
+            message = text_data_json['message']
+            sender = text_data_json['sender']
+            recipient = text_data_json['recipient']
 
-        senderuser = User.objects.filter(username=sender).first()
-        recipientuser = User.objects.filter(username=recipient).first()
+            senderuser = User.objects.filter(username=sender).first()
+            recipientuser = User.objects.filter(username=recipient).first()
 
-        if senderuser and recipientuser:
-            msg = Message(content=message, author=senderuser, recipient=recipientuser)
-            msg.save()
-            if sender in usersockets:
-                for i in usersockets[sender]:
-                    if i in connected and connected[i]:
-                        connected[i].send(text_data=json.dumps({
-                            'type': 'message',
-                            'sender': sender,
-                            'fullname': senderuser.first_name + ' ' + senderuser.last_name,
-                            'message': message
+            if senderuser and recipientuser:
+                msg = Message(content=message, author=senderuser, recipient=recipientuser)
+                msg.save()
+                if sender in usersockets:
+                    for i in usersockets[sender]:
+                        if i in connected and connected[i]:
+                            connected[i].send(text_data=json.dumps({
+                                'type': 'message',
+                                'sender': sender,
+                                'fullname': senderuser.first_name + ' ' + senderuser.last_name,
+                                'message': message
+                            }))
+                if recipient in usersockets:
+                    for i in usersockets[recipient]:
+                        if i in connected and connected[i]:
+                            connected[i].send(text_data=json.dumps({
+                                'type': 'message',
+                                'sender': sender,
+                                'fullname': senderuser.first_name + ' ' + senderuser.last_name,
+                                'message': message
+                            }))
+                if recipient in blog.consumers.usersockets:
+                    for i in blog.consumers.usersockets[recipient]:
+                        if i in blog.consumers.connected and blog.consumers.connected[i]:
+                            blog.consumers.connected[i].send(text_data=json.dumps({
+                                'type': 'message',
+                                'sender': sender,
+                                'fullname': senderuser.first_name + ' ' + senderuser.last_name,
+                                'message': message
+                            }))
+            else:
+                self.send(text_data=json.dumps({
+                    'error': 'You are not a valid sender!'
+                }))
+        elif text_data_json['type'] == 'seen':
+            sender = text_data_json['sender']
+            recipient = text_data_json['recipient']
+            recipientuser = User.objects.filter(username=recipient).first()
+            msgs = Message.objects.filter(recipient=recipientuser)
+            for msg in msgs:
+                msg.seen = True
+                msg.save()
+            if recipient in blog.consumers.usersockets:
+                for i in blog.consumers.usersockets[recipient]:
+                    if i in blog.consumers.connected and blog.consumers.connected[i]:
+                        blog.consumers.connected[i].send(text_data=json.dumps({
+                            'type': 'seen',
+                            'sender': sender
                         }))
-            if recipient in usersockets:
-                for i in usersockets[recipient]:
-                    if i in connected and connected[i]:
-                        connected[i].send(text_data=json.dumps({
-                            'type': 'message',
-                            'sender': sender,
-                            'fullname': senderuser.first_name + ' ' + senderuser.last_name,
-                            'message': message
-                        }))
-        else:
-            self.send(text_data=json.dumps({
-                'error': 'You are not a valid sender!'
-            }))
 
 

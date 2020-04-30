@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from .models import Post
 from django.conf import settings
 from user_profile.models import User
+import base64
+import hashlib
 
 
 connected = {}
@@ -69,6 +71,32 @@ class BlogConsumer(WebsocketConsumer):
     def connect(self):
         # print(self.scope['url_route']['kwargs'])
         # print(self.__dict__)
+
+        cookiebytes = [elem for elem in self.scope['headers'] if elem[0] == b'cookie']
+        if len(cookiebytes) > 0 and len(cookiebytes[0]) > 0:
+            cookies = cookiebytes[0][1].split(b"; ")
+            token = ''
+            for cookie in cookies:
+                kv = cookie.split(b'=', 1)
+                if kv[0] == b'auth_cookie':
+                    token = kv[1]
+            print(token)
+            token = base64.standard_b64encode(hashlib.sha256(token).digest()).decode()
+            print(token)
+            user = User.objects.filter(token=token).first()
+            if user:
+                username = user.username
+                print('correct user')
+                addr = self.scope['client'][1]
+                connected[addr] = self
+                addrtouser[addr] = username
+                if username in usersockets:
+                    usersockets[username].append(addr)
+                else:
+                    usersockets[username] = [addr]
+                print(usersockets)
+                print(addrtouser)
+
         self.name = self.scope['client'][1]
         print("connect blog")
         self.accept()

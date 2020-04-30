@@ -1,4 +1,4 @@
-const socket = new WebSocket('ws://' + window.location.host + '/ws/blog');
+const socket = new WebSocket('ws://' + window.location.host + '/ws/blog/');
 
 socket.onmessage = function (e) {
     const info = JSON.parse(e.data);
@@ -52,6 +52,29 @@ socket.onmessage = function (e) {
                                         info.author + ": " + info.body +
                                     "</div>";
         console.log(info.body);
+    }else if(info.type === 'message'){
+        console.log(info);
+        document.getElementById("notificationcontent").innerHTML += (
+            "<div class=\"note\">\n" +
+            "                <p class=\"notifuser\">" + info.sender + "</p>" +
+            "<b>" +  info.fullname + "</b>" +  ": " + info.message +
+            "</div>"
+        )
+    }else if(info.type === 'seen'){
+        console.log(info);
+        const notes = document.getElementsByClassName('note');
+        const notifications = document.getElementById('notificationcontent');
+        console.log(notes.length);
+        let newnotif = '';
+        for(let i of notes){
+            const user = i.querySelector('.notifuser').innerText;
+            console.log(user);
+            console.log(info.sender);
+            if(user !== info.sender){
+                newnotif += i.outerHTML;
+            }
+        }
+        notifications.innerHTML = newnotif;
     }
 };
 

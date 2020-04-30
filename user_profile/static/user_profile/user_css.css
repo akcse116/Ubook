@@ -368,3 +368,35 @@ a:hover{
 .likebtn:active{
     background-color: #65ff74;
 }
+
+#notifications{
+    position: absolute;
+    top: 30%;
+    left: 1%;
+    min-width: 15vw;
+    max-width: 15vw;
+    max-height: 50vh;
+    overflow: scroll;
+}
+
+#notificationlabel{
+    background-color: #3864bc;
+    color: white;
+    padding: 2%;
+}
+
+#notificationcontent{
+    background-color: white;
+    color: black;
+    padding: 2%;
+    overflow: hidden;
+}
+
+.note{
+    border: #3864bc 2px solid;
+    min-height: 50px;
+}
+
+.notifuser{
+    display: none;
+}
