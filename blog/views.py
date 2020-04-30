@@ -15,12 +15,12 @@ def home(request):
             media_ID = random.randrange(1000000)
             media_type = media.name.split('.')[1]
             upload_name = 'upload_'+ str(media_ID) +'.'+ media_type
-            media_name = 'http://'+ 'localhost' + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + upload_name 
+            media_name = 'http://'+ request.META['HTTP_HOST'] + settings.MEDIA_URL + upload_name
             while Post.objects.filter(media = media_name):
                 media_ID = random.randrange(1000000)
                 media_type = media.name.split('.')[1]
                 upload_name = 'upload_'+ str(media_ID) +'.'+ media_type
-                media_name = 'http://'+ 'localhost' + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + upload_name  
+                media_name = 'http://'+ request.META['HTTP_HOST'] + settings.MEDIA_URL + upload_name
             storage_file_path = settings.MEDIA_ROOT + '/'+ upload_name
             file_content = media.file.read()
             with open(storage_file_path, 'wb') as file:
