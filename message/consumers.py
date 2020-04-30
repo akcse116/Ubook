@@ -3,8 +3,12 @@ import json
 # from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 # from django.shortcuts import render
+from .models import Message
+from user_profile.models import User
 
 connected = {}
+usersockets = {}
+addrtouser = {}
 
 # change connected to list {address:[e-mail, websocket]}
 # in js send e-mail of sender and e-mail of receiver as websocket
@@ -17,15 +21,22 @@ connected = {}
 # order them in an array [[user, message], [], ....]
 
 
-def main(request, **kwargs):
+def main(request):
     # print(request)
     # print("wa")
     # print(request)
     # print("aaaaa")
-    # print(kwargs)
-    # print(request['url_route']['kwargs'])
+    # print(user)
+    # print(request['url_route']['kwargs']['user'])
     cons = ChatConsumer(request)
-    connected[request['client'][1]] = cons
+    username = request['url_route']['kwargs']['user']
+    addr = request['client'][1]
+    connected[addr] = cons
+    addrtouser[addr] = username
+    if username in usersockets:
+        usersockets[username].append(addr)
+    else:
+        usersockets[username] = [addr]
     return cons
 
 # in dms (plan): when sent, include room name in client javascript
@@ -41,21 +52,47 @@ class ChatConsumer(WebsocketConsumer):
         self.accept()
 
     def disconnect(self, close_code):
+        print(usersockets)
+        usersock = addrtouser[self.name]
+        try:
+            usersockets[usersock].remove(self.name)
+        except ValueError:
+            pass
         del connected[self.name]
+        del addrtouser[self.name]
+        if len(usersockets[usersock]) <= 0:
+            del usersockets[usersock]
         print("disconnected")
+        print(usersockets)
+        print(addrtouser)
         pass
 
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
+        sender = text_data_json['sender']
+        recipient = text_data_json['recipient']
+
+        senderuser = User.objects.filter(username=sender).first()
+        recipientuser = User.objects.filter(username=recipient).first()
+
+        msg = Message(content=message, author=senderuser, recipient=recipientuser)
+        msg.save()
         print(message)
 
-        for i in connected.values():
-            if i:
-                i.send(text_data=json.dumps({
-                    'message': message
-                }))
-        # self.send(text_data=json.dumps({
-        #     'message': message
-        # }))
+        if sender in usersockets:
+            for i in usersockets[sender]:
+                if i in connected and connected[i]:
+                    connected[i].send(text_data=json.dumps({
+                        'sender': sender,
+                        'message': message
+                    }))
+        if recipient in usersockets:
+            for i in usersockets[recipient]:
+                if i in connected and connected[i]:
+                    connected[i].send(text_data=json.dumps({
+                        'sender': sender,
+                        'message': message
+                    }))
+
 

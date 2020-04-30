@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import string
 from user_profile.models import User
 import bcrypt
+from random import choice
 
 
 def home(request):
@@ -23,7 +24,7 @@ def register(request):
         return HttpResponse("Account already exists with this email")
     elif checkpass[0] and firstname and email:
         password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-        user = User(username=(firstname + ' ' + lastname), first_name=firstname, last_name=lastname, email=email, password=password.decode())
+        user = User(username=(firstname + '_' + lastname + '_' + gentoken()), first_name=firstname, last_name=lastname, email=email, password=password.decode())
         print(user.password)
         user.save()
         return HttpResponse(checkpass[1])
@@ -70,3 +71,11 @@ def checkpassvalid(password):
     if message == "":
         message += "Account successfully registered"
     return [haslower and hasupper and hasdigit and haspunc and nowhitespace and properlen, message]
+
+
+def gentoken():
+    options = string.ascii_letters + string.digits
+    token = ''
+    for i in range(15):
+        token += choice(options)
+    return token

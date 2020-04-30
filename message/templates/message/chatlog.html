@@ -4,31 +4,38 @@
 
 <div id="messenger">
     <div id="history">
-        {% for message in messages %}
-            <div class="histLogs">
-                <h1 class="userInChat">{{ message.user }}</h1>
-                <p class="lastSent">{{ message.lastsent }}</p>
-                <div class="lastMessage">{{ message.lastmessage }}</div>
+        {% for userconvo in conversations %}
+            <div class="histLogs" id={{userconvo.username}} onclick="switchConvo(this);">
+                <h1 class="userInChat">{{ userconvo.first_name }} {{ userconvo.last_name }}</h1>
             </div>
             <div class="divider"></div>
         {% endfor %}
+        <script>
+            document.getElementsByClassName("histLogs")[0].className = 'histLogsHighlighted';
+        </script>
+        <p id="currentId">{{ conversations.0.username }}</p>
+        <p id="userId" onload="wsHanshake();">{{ user.username }}</p>
     </div>
     <div class="log">
         <div id="messageLog">
             {% for message in log %}
-                {% if message.0 == user %}
-                    <div class="yourMessage">{{ message.1 }}</div>
+                {% if message.author == user %}
+                    <div class="yourMessage">{{ message.content }}</div>
                 {% else %}
-                    <div class="otherMessage">{{ message.1 }}</div>
+                    <div class="otherMessage">{{ message.content }}</div>
                 {% endif %}
             {% endfor %}
         </div>
-        <div id="messageInput" >
-            <form id="input" onsubmit="addToLog();return false;">
-                <input type="text" id="inputMessage"/>
-                <input type="submit" id="sendButton" value="Send"/>
-            </form>
-        </div>
+
+        {% if conversations %}
+            <div id="messageInput" >
+                <form id="input" onsubmit="addToLog();return false;">
+                    <input type="text" id="inputMessage"/>
+                    <input type="submit" id="sendButton" value="Send"/>
+                </form>
+            </div>
+        {% endif %}
+
     </div>
 </div>
 

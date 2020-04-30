@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 class Message(models.Model):
-    # primary key identifier for Post object
+    # primary key identifier for Message object
     id = models.AutoField(primary_key=True)
     # TextField similar to CharField but w/o restrictions
     content = models.TextField()

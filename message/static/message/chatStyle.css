@@ -25,6 +25,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-height: 65vh;
+    min-height: 65vh;
 }
 
 #history{
@@ -39,8 +40,21 @@ body {
     padding: 3%;
 }
 
-.histLogs:hover{
+.histLogsHighlighted{
+    padding: 3%;
     background-color: #3864bc;
+}
+
+.histLogs:hover{
+    color: lightblue;
+}
+
+#currentId{
+    display: none;
+}
+
+#userId{
+    display: none;
 }
 
 .userInChat{
@@ -111,8 +125,8 @@ body {
 #messageInput{
     display: flex;
     background-color: white;
-    height: 10%;
-    max-height: 5%;
+    height: 30px;
+    max-height: 30px;
     padding: 1%;
 }
 

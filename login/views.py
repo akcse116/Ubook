@@ -15,13 +15,12 @@ def home(request):
     print(data)
     if check_pwd(email,pwd):
         token = gentoken()
+        response = HttpResponse("setting cookie")
+        response.set_cookie('auth_cookie', token)
         token = base64.standard_b64encode(hashlib.sha256(token.encode()).digest()).decode()
-        print(token)
         user = User.objects.get(email=email)
         user.token = token
         user.save()
-        response = HttpResponse("setting cookie")
-        response.set_cookie('auth_cookie', token)
         return response
         
     else:

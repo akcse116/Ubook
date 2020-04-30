@@ -1,32 +1,62 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
-messages = [
-    {
-        'user': 'person1',
-        'lastmessage': 'hi',
-        'lastsent': 'Jan. 1, 2020'
-    },
-]
-
-test = open('message/templates/message/person0___person2.txt', 'r').read()
-
-logs = {
-    ('person0', 'person2'): [i.split(": ", 1) for i in test.splitlines()]
-}
-
-user = 'person0'
+from user_profile.models import User
+from .models import Message
+from django.db.models import Q
+import json
+import hashlib
+import base64
 
 
 def home(request):
 
+    conversations = []
+    currentchatlog = []
+    token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
+    user = User.objects.get(token=token)
+    logs = Message.objects.filter(Q(author=user) | Q(recipient=user))
+    for msg in logs:
+        if msg.recipient != user and msg.recipient not in conversations:
+            conversations.insert(0, msg.recipient)
+        elif msg.author != user and msg.author not in conversations:
+            conversations.insert(0, msg.author)
+    for msg in logs:
+        if msg.recipient == conversations[0] or msg.author == conversations[0]:
+            currentchatlog.append(msg)
+    print(conversations)
+    print(currentchatlog)
+
     context = {
-        'messages': messages,
-        'log': logs[('person0', 'person2')],
+        'conversations': conversations,
+        'log': currentchatlog,
         'user': user
     }
-    return render(request, 'message/chatlog.html', context)
+    response = render(request, 'message/chatlog.html', context)
+    if conversations:
+        response.set_cookie('current_user_chat', conversations[0].id)
+    else:
+        response.set_cookie('current_user_chat', '0')
+    return response
 
 # get user's token from request's cookie, search it up on db
 # get first message where this person is either sender or receiver, display their log
 # get other messages where this person is either sender or receiver, put the other user in the messages list
+
+
+def switchconvo(request, user):
+    token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
+    currentuser = User.objects.filter(token=token).first()
+    user = User.objects.filter(username=user).first()
+    currentchatlog = Message.objects.filter((Q(author=user) | Q(recipient=user)) &
+                                            (Q(author=currentuser) | Q(recipient=currentuser)))
+    full = [(i.author.username, i.content) for i in currentchatlog]
+    if full:
+        response = json.dumps(full)
+        response = HttpResponse(response)
+        response.set_cookie('current_user_chat', user)
+    else:
+        response = json.dumps(False)
+        response = HttpResponse(response)
+
+    return response
+

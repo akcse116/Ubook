@@ -1,14 +1,29 @@
-const socket = new WebSocket('ws://' + window.location.host + '/ws/message/user/');
+window.addEventListener('DOMContentLoaded', wsHanshake, false);
 
-socket.onmessage = function (e) {
-    console.log(e.data);
-    const data = JSON.parse(e.data);
-    document.getElementById("messageLog").innerHTML += "<div class=\"otherMessage\">"+ data.message + "</div>"
-};
+let socket = '';
 
-socket.onopen = function (e) {
-    console.log("connected")
-};
+function wsHanshake(){
+    const userId = document.getElementById('userId').innerText;
+
+    if(userId){
+        socket = new WebSocket('ws://' + window.location.host + '/ws/message/' +
+            userId + '/');
+
+        socket.onmessage = function (e) {
+            console.log(e.data);
+            const data = JSON.parse(e.data);
+            if(data.sender === userId){
+                document.getElementById("messageLog").innerHTML += "<div class=\"yourMessage\">"+ data.message + "</div>"
+            }else{
+                document.getElementById("messageLog").innerHTML += "<div class=\"otherMessage\">"+ data.message + "</div>"
+            }
+        };
+
+        socket.onopen = function (e) {
+            console.log("connected")
+        };
+    }
+}
 
 function addToLog(){
     const log = document.getElementById("messageLog");
@@ -23,10 +38,47 @@ function addToLog(){
     // }
     message.focus();
     socket.send(JSON.stringify({
-        'sender': "a",
-        'recepient': "b",
+        'sender': document.getElementById('userId').innerText,
+        'recipient': document.getElementById('currentId').innerText,
         'message': val
     }));
+}
+
+function switchConvo(event){
+    let idtracker = document.getElementById('currentId');
+    if(event.className !== 'histLogsHighlighted'){
+        const userswitch = new XMLHttpRequest();
+        userswitch.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                console.log(JSON.parse(this.response));
+                const newlog = JSON.parse(this.response);
+                if(newlog){
+                    document.getElementsByClassName('histLogsHighlighted')[0].className = 'histLogs';
+                    event.className = 'histLogsHighlighted';
+                    idtracker.innerText = event.id;
+                    const log = document.getElementById("messageLog");
+                    log.innerHTML = '';
+                    for(let i of newlog){
+                        if(String(i[0]) === event.id){
+                            log.innerHTML += (
+                                "<div class=\"otherMessage\">" + i[1] + "</div>"
+                            );
+                        }else{
+                            log.innerHTML += (
+                                "<div class=\"yourMessage\">" + i[1] + "</div>"
+                            );
+                        }
+                    }
+                }
+            }
+        };
+
+        const url = '/message/room/' + event.id + '/';
+        userswitch.open('GET', url);
+        userswitch.send()
+    }
+
+
 }
 
 
