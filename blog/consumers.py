@@ -10,6 +10,8 @@ from user_profile.models import User
 
 
 connected = {}
+usersockets = {}
+addrtouser = {}
 
 
 def main(request):

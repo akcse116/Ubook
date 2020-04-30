@@ -13,6 +13,7 @@ class Message(models.Model):
     # ForeignKey(related table, what to do if user who created post gets deleted - delete post)
     author = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE, null=True, blank=True)
     recipient = models.ForeignKey(User, related_name="receiver", on_delete=models.CASCADE, null=True, blank=True)
+    seen = models.BooleanField(default=False)
 
     # return how we want to be printed out
     def __str__(self):

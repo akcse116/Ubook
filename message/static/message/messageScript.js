@@ -12,10 +12,24 @@ function wsHanshake(){
         socket.onmessage = function (e) {
             console.log(e.data);
             const data = JSON.parse(e.data);
-            if(data.sender === userId){
-                document.getElementById("messageLog").innerHTML += "<div class=\"yourMessage\">"+ data.message + "</div>"
+            if(!data.hasOwnProperty('error')){
+                const currentId = document.getElementById('currentId').innerText;
+                console.log(currentId);
+                console.log(data.sender);
+                if(data.sender === userId){
+                    document.getElementById("messageLog").innerHTML += "<div class=\"yourMessage\">"+ data.message + "</div>"
+                }else if (data.sender === currentId){
+                    document.getElementById("messageLog").innerHTML += "<div class=\"otherMessage\">"+ data.message + "</div>"
+                }else{
+                    document.getElementById("notificationcontent").innerHTML += (
+                        "<div class=\"note\">\n" +
+                        "                <p class=\"notifuser\">" + data.sender + "</p>" +
+                            "<b>" +  data.fullname + "</b>" +  ": " + data.message +
+                        "</div>"
+                    )
+                }
             }else{
-                document.getElementById("messageLog").innerHTML += "<div class=\"otherMessage\">"+ data.message + "</div>"
+                alert(data.error);
             }
         };
 
@@ -58,6 +72,7 @@ function switchConvo(event){
                     idtracker.innerText = event.id;
                     const log = document.getElementById("messageLog");
                     log.innerHTML = '';
+                    console.log(idtracker.innerText);
                     for(let i of newlog){
                         if(String(i[0]) === event.id){
                             log.innerHTML += (
@@ -67,6 +82,14 @@ function switchConvo(event){
                             log.innerHTML += (
                                 "<div class=\"yourMessage\">" + i[1] + "</div>"
                             );
+                        }
+                    }
+                    const notes = document.getElementsByClassName('note');
+                    const notifications = document.getElementById('notifications');
+                    for(let i of notes){
+                        const user = i.querySelector('.notifuser').innerText;
+                        if(user === idtracker.innerText){
+                            i.remove();
                         }
                     }
                 }

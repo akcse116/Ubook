@@ -34,6 +34,8 @@ def home(request):
     else:
         None
 
+
+
     posts = Post.objects.filter(parent_id=None).order_by('date_posted').reverse()
     context = {
         'posts': []
@@ -41,6 +43,18 @@ def home(request):
 
     for i in posts:
         comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
+        if i.media:
+            medianame = i.media
+        else:
+            medianame = ''
+        postsep = {
+            'id': i.id,
+            'content': i.content,
+            'likes': i.likes,
+            'author': i.author,
+            'date_posted': i.date_posted,
+            'media': 'http://' + request.META['HTTP_HOST'] + medianame
+        }
         if comments:
             context['posts'].append([i, comments])
         else:

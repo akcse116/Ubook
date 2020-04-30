@@ -37,7 +37,7 @@
 
                     <div class="interact">
 
-                        {% if post.0.likes == 1 %}
+                        {% if post.0.likes >= 1 %}
                         <button class = "button" type="button" onclick="sendLike(this);" style="background-color: blue">
                             <i class ="emoji">&#128077;</i>
                         </button>
@@ -77,6 +77,19 @@
         </div>
     </div>
 
+</div>
+<div id="notifications">
+    <div id="notificationlabel">
+        <p>Notifications</p>
+    </div>
+    <div id="notificationcontent">
+        {% for notif in unseen %}
+        <div class="note">
+            <p class="notifuser"> {{ notif.author.username }} </p>
+            <b>{{ notif.author.first_name }} {{ notif.author.last_name }}</b>: {{ notif.content }}
+        </div>
+        {% endfor %}
+    </div>
 </div>
     {% endblock content %}
 

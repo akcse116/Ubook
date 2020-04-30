@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from blog.models import Post
-from .models import User, FriendRequest
+# from .models import User, FriendRequest
+from .models import User
 
 
 def home(request):

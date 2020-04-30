@@ -2,6 +2,9 @@
 {% load static %}
 {% block content %}
 
+<div id="nameInChat">
+    <p id="userFullName">{{ user.first_name }} {{ user.last_name }}</p>
+</div>
 <div id="messenger">
     <div id="history">
         {% for userconvo in conversations %}
@@ -14,7 +17,7 @@
             document.getElementsByClassName("histLogs")[0].className = 'histLogsHighlighted';
         </script>
         <p id="currentId">{{ conversations.0.username }}</p>
-        <p id="userId" onload="wsHanshake();">{{ user.username }}</p>
+        <p id="userId">{{ user.username }}</p>
     </div>
     <div class="log">
         <div id="messageLog">
@@ -36,6 +39,20 @@
             </div>
         {% endif %}
 
+    </div>
+
+</div>
+<div id="notifications">
+    <div id="notificationlabel">
+        <p>Notifications</p>
+    </div>
+    <div id="notificationcontent">
+        {% for notif in unseen %}
+            <div class="note">
+                <p class="notifuser"> {{ notif.author.username }} </p>
+                <b>{{ notif.author.first_name }} {{ notif.author.last_name }}</b>: {{ notif.content }}
+            </div>
+        {% endfor %}
     </div>
 </div>
 
