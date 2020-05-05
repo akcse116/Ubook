@@ -66,7 +66,7 @@ socket.onmessage = function (e) {
             "            </div>" +
             "        </div>"
             );
-    }/*else if(info.type === 'message'){
+    }else if(info.type === 'message'){
         console.log(info);
         document.getElementById("notificationcontent").innerHTML += (
             "<div class=\"note\">\n" +
@@ -89,7 +89,7 @@ socket.onmessage = function (e) {
             }
         }
         notifications.innerHTML = newnotif;
-    }*/
+    }
 };
 
 socket.onopen = function () {

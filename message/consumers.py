@@ -99,13 +99,27 @@ class ChatConsumer(WebsocketConsumer):
             if senderuser and recipientuser:
                 msg = Message(content=message, author=senderuser, recipient=recipientuser)
                 msg.save()
+                message = message.replace('&', '&amp;')
+                message = message.replace('<', '&lt;')
+                message = message.replace('>', '&gt;')
+
+                firstname = senderuser.first_name
+                firstname = firstname.replace('&', '&amp;')
+                firstname = firstname.replace('<', '&lt;')
+                firstname = firstname.replace('>', '&gt;')
+
+                lastname = senderuser.last_name
+                lastname = lastname.replace('&', '&amp;')
+                lastname = lastname.replace('<', '&lt;')
+                lastname = lastname.replace('>', '&gt;')
+
                 if sender in usersockets:
                     for i in usersockets[sender]:
                         if i in connected and connected[i]:
                             connected[i].send(text_data=json.dumps({
                                 'type': 'message',
                                 'sender': sender,
-                                'fullname': senderuser.first_name + ' ' + senderuser.last_name,
+                                'fullname': firstname + ' ' + lastname,
                                 'message': message
                             }))
                 if recipient in usersockets:
@@ -114,7 +128,7 @@ class ChatConsumer(WebsocketConsumer):
                             connected[i].send(text_data=json.dumps({
                                 'type': 'message',
                                 'sender': sender,
-                                'fullname': senderuser.first_name + ' ' + senderuser.last_name,
+                                'fullname': firstname + ' ' + lastname,
                                 'message': message
                             }))
                 if recipient in blog.consumers.usersockets:
@@ -123,7 +137,7 @@ class ChatConsumer(WebsocketConsumer):
                             blog.consumers.connected[i].send(text_data=json.dumps({
                                 'type': 'message',
                                 'sender': sender,
-                                'fullname': senderuser.first_name + ' ' + senderuser.last_name,
+                                'fullname': firstname + ' ' + lastname,
                                 'message': message
                             }))
             else:

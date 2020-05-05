@@ -10,6 +10,11 @@ socket.onmessage = function (e) {
             console.log(info.medialink);
             img = "<img src=" + info.medialink + " style=\"max-width: 300px; max-height: 300px\">";
         }
+        const user = document.getElementById('main_username').innerText;
+        let friendbtn = '';
+        if(info.username !== user){
+            friendbtn = '<button type=\'submit\' class="btn" name="friendBtn" onclick="friend(this);">Friend User</button>';
+        }
         container.insertAdjacentHTML("afterbegin",
             "<article class = \"post\" id=" + info.id + ">"+
             "            <div class = \"post-content\">" +
@@ -17,7 +22,7 @@ socket.onmessage = function (e) {
                                 img + "<br>" +
                                 info.body +
             "                </div>" +
-            "                <div class=\"interact\">" +
+            "                <div class=\"interact\">" + friendbtn +
             "                    <button class = \"button\" type=\"button\" onclick=\"sendLike(this);\">" +
             "                        <i class =\"emoji\">&#128077;</i>" +
             "                    </button>" +
@@ -33,12 +38,13 @@ socket.onmessage = function (e) {
             "            <div class = \"post-meta\">" +
                             info.author +
             "                Published: " + info.date +
+            "                <p class=\"post-user\">" + info.username + "</p>"+
             "            </div>" +
             "        </article>"
         );
     }else if(info.type === 'like'){
         const div = document.getElementById(info.id);
-        const button = div.querySelectorAll("div.interact")[0].querySelectorAll("button")[0];
+        const button = div.querySelectorAll("div.interact")[0].querySelectorAll(".button")[0];
         console.log(button);
         if(info.status){
             button.style.backgroundColor = "blue";
@@ -110,18 +116,65 @@ function sendPost(){
 function sendLike(elem){
     socket.send(JSON.stringify({
         type: "like",
-        id: elem.parentNode.parentNode.parentNode.id
+        id: elem.parentNode.parentNode.parentNode.id,
+        user: document.getElementById('main_username').innerText
     }));
 }
 
 function sendComment(elem){
+    // console.log(document.getElementById('main_username').innerText);
     const input = elem.querySelector("#post-comment");
     const id = elem.parentNode.parentNode.parentNode.id;
     socket.send(JSON.stringify({
         type: "comment",
         id: id,
-        body: input.value
+        body: input.value,
+        user: document.getElementById('main_username').innerText
     }));
     input.value = ""
 }
 
+function friend(elem){
+    const friend = elem.parentNode.parentNode.parentNode.querySelector('.post-user').innerText;
+    const user = document.getElementById('main_username').innerText;
+    console.log(elem.innerText);
+    if(elem.innerText === 'Friend User'){
+        const friendrequest = new XMLHttpRequest();
+        friendrequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                console.log(this.response);
+                if(this.response === 'added'){
+                    const metas = document.getElementsByClassName('post-meta');
+                    for(let i of metas){
+                        if(i.querySelector('.post-user').innerText === friend){
+                            i.parentNode.querySelector('.btn').innerText = 'Unfriend User';
+                        }
+                    }
+                    elem.innerText = 'Unfriend User';
+                }
+            }
+        };
+
+        friendrequest.open("GET", "/blog/addfriend/" + user + '/' + friend + '/');
+        friendrequest.send();
+    }else{
+        const unfriendrequest = new XMLHttpRequest();
+        unfriendrequest.onreadystatechange = function () {
+            if(this.readyState === 4 && this.status === 200){
+                console.log(this.response);
+                const metas = document.getElementsByClassName('post-meta');
+                for(let i of metas){
+                    if(i.querySelector('.post-user').innerText === friend){
+                        i.parentNode.querySelector('.btn').innerText = 'Friend User';
+                    }
+                }
+                if(this.response === 'removed'){
+                    elem.innerText = 'Friend User';
+                }
+            }
+        };
+
+        unfriendrequest.open("GET", "/blog/removefriend/" + user + '/' + friend + '/');
+        unfriendrequest.send();
+    }
+}

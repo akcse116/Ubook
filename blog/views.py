@@ -30,18 +30,19 @@ def home(request):
                 file.write(file_content)
         # media = 'http://'+ request.META['SERVER_NAME'] + ':'+ request.META['SERVER_PORT'] + settings.MEDIA_URL + media.name
         else:
-            media = None
+            media_name = None
             record = Post(title="A", content=body, media=media_name)
             record.save()
         
     else:
         None
 
-
     posts = Post.objects.filter(parent_id=None).order_by('date_posted').reverse()
     context = {
+        'friendposts': [],
         'posts': [],
-        'unseen': []
+        'unseen': [],
+        'user': ''
     }
 
     if request.COOKIES.get('auth_cookie'):
@@ -50,38 +51,51 @@ def home(request):
         user = User.objects.filter(token=token).first()
         if user:
             context['unseen'] = Message.objects.filter(Q(recipient=user) & Q(seen=False))
+            context['user'] = user
+            friends = user.friends.all()
 
-    for i in posts:
-        comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
-        if i.media:
-            medianame = i.media
-        else:
-            medianame = ''
-        postsep = {
-            'id': i.id,
-            'content': i.content,
-            'likes': i.likes,
-            'author': i.author,
-            'date_posted': i.date_posted,
-            'media': 'http://' + request.META['HTTP_HOST'] + medianame
-        }
-        if comments:
-            context['posts'].append([i, comments])
-        else:
-            context['posts'].append([i, []])
-
-    print(request.META['HTTP_HOST'] + ':'+ request.META['SERVER_PORT'])
-    print('aaaaa')
-
-    return render(request, 'blog/home.html', context)
+            for i in posts:
+                comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
+                isself = i.author == user
+                isfriend = friends.filter(id=i.author.id).exists()
+                if comments:
+                    if isfriend:
+                        context['friendposts'].append([i, comments, isself, isfriend])
+                    else:
+                        context['posts'].append([i, comments, isself, isfriend])
+                else:
+                    if isfriend:
+                        context['friendposts'].append([i, [], isself, isfriend])
+                    else:
+                        context['posts'].append([i, [], isself, isfriend])
+            print(context)
+            return render(request, 'blog/home.html', context)
+    return redirect('/')
 
 
-def add_friend(request, id):
-    if request.GET.get('friendBtn'):
-        friend = get_object_or_404(User, id=id)
-        user = User
-        user.friends.add(friend)
+def add_friend(request, username, friend):
+    print(username)
+    print(friend)
+    friendobj = User.objects.filter(username=friend).first()
+    user = User.objects.filter(username=username).first()
+    if friendobj and user:
+        friends = user.friends.all()
+        if not friends.filter(username=friendobj).exists():
+            user.friends.add(friendobj)
+            user.save()
+            return HttpResponse('added')
+        return HttpResponse('friend already added')
+    return HttpResponse('error')
 
-    return render(request, 'blog/home.html')
 
-
+def remove_friend(request, username, friend):
+    user = User.objects.filter(username=username).first()
+    friendobj = User.objects.filter(username=friend).first()
+    if friendobj and user:
+        friends = user.friends.all()
+        if friends.filter(username=friendobj).exists():
+            user.friends.remove(friendobj)
+            user.save()
+            return HttpResponse('removed')
+        return HttpResponse('not originally friended')
+    return HttpResponse('error')

@@ -24,11 +24,12 @@ def home(request):
         if user:
             context['unseen'] = Message.objects.filter(Q(recipient=user) & Q(seen=False))
 
-    for i in posts:
-        comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
-        if comments:
-            context['posts'].append([i, comments])
-        else:
-            context['posts'].append([i, []])
+        for i in posts:
+            comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
+            if comments:
+                context['posts'].append([i, comments])
+            else:
+                context['posts'].append([i, []])
 
-    return render(request, 'user_profile/profile.html', context)
+        return render(request, 'user_profile/profile.html', context)
+    return redirect('/')

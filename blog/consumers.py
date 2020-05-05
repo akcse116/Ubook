@@ -45,25 +45,36 @@ def createPost(request):
     else:
         media = None
         media_name = None
-    record = Post(title="A", content=body, media=media_name)
-    record.save()
 
-    body = body.replace('&', '&amp;')
-    body = body.replace('<', '&lt;')
-    body = body.replace('>', '&gt;')
+    if request.COOKIES.get('auth_cookie'):
+        token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
+        print(token)
+        user = User.objects.filter(token=token).first()
 
-    #send post information via websockets
-    for i in connected.values():
-        i.send(text_data=json.dumps({
-            'type': 'post',
-            'body': body,
-            'author': str(record.author),
-            'date': str(record.date_posted),
-            'media': hasImg,
-            'id': record.id,
-            'medialink': media_name
-        }))
-    return HttpResponse("received")
+        if user:
+            print(user.username)
+            record = Post(title="Post", content=body, media=media_name, author=user)
+            record.save()
+
+            body = body.replace('&', '&amp;')
+            body = body.replace('<', '&lt;')
+            body = body.replace('>', '&gt;')
+
+            #send post information via websockets
+            for i in connected.values():
+                i.send(text_data=json.dumps({
+                    'type': 'post',
+                    'body': body,
+                    'author': record.author.first_name + ' ' + record.author.last_name,
+                    'username': record.author.username,
+                    'date': str(record.date_posted),
+                    'media': hasImg,
+                    'id': record.id,
+                    'medialink': media_name
+                }))
+            return HttpResponse("received")
+        return HttpResponse("error invalid auth_cookie")
+    return HttpResponse("error invalid auth_cookie")
 
 
 class BlogConsumer(WebsocketConsumer):
@@ -111,29 +122,51 @@ class BlogConsumer(WebsocketConsumer):
         print(text_data_json)
 
         if text_data_json['type'] == 'like':
-            changelike = Post.objects.get(id=int(text_data_json['id']))
-            changelike.likes = changelike.likes + 1
-            userlike = bool(changelike.likes)
-            changelike.save()
+            user = User.objects.filter(username=text_data_json['user']).first()
+            if user:
+                likes = user.likes.all()
+                isliked = likes.filter(id=int(text_data_json['id'])).first()
+                if isliked:
+                    changelike = Post.objects.get(id=int(text_data_json['id']))
+                    changelike.likes = changelike.likes - 1
+                    changelike.save()
+                    user.likes.remove(changelike)
+                    user.save()
+                    likestatus = False
+                else:
+                    changelike = Post.objects.get(id=int(text_data_json['id']))
+                    changelike.likes = changelike.likes + 1
+                    changelike.save()
+                    user.likes.add(changelike)
+                    user.save()
+                    likestatus = True
 
-            for i in connected.values():
-                if i:
-                    i.send(text_data=json.dumps({
-                        'type': 'like',
-                        'id': text_data_json['id'],
-                        'status': userlike
-                    }))
+                for i in connected.values():
+                    if i:
+                        i.send(text_data=json.dumps({
+                            'type': 'like',
+                            'id': text_data_json['id'],
+                            'status': likestatus
+                        }))
         elif text_data_json['type'] == 'comment':
-            record = Post(title="C", content=text_data_json['body'], parent_id=text_data_json['id'])
-            record.save()
+            body = text_data_json['body']
+            user = User.objects.filter(username=text_data_json['user']).first()
+            if user:
+                record = Post(title="Comment", content=text_data_json['body'], parent_id=text_data_json['id'], author=user)
+                record.save()
 
-            for i in connected.values():
-                if i:
-                    i.send(text_data=json.dumps({
-                        'type': 'comment',
-                        'id': record.id,
-                        'parentid': record.parent_id,
-                        'date': str(record.date_posted),
-                        'body': text_data_json['body'],
-                        'author': str(record.author)
-                    }))
+                body = body.replace('&', '&amp;')
+                body = body.replace('<', '&lt;')
+                body = body.replace('>', '&gt;')
+
+                for i in connected.values():
+                    if i:
+                        i.send(text_data=json.dumps({
+                            'type': 'comment',
+                            'id': record.id,
+                            'parentid': record.parent_id,
+                            'date': str(record.date_posted),
+                            'body': body,
+                            'author': record.author.first_name + ' ' + record.author.last_name,
+                            'username': record.author.username,
+                        }))
