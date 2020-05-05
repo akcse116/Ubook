@@ -1,5 +1,5 @@
 import random
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Post
 from user_profile.models import User
@@ -74,4 +74,14 @@ def home(request):
     print('aaaaa')
 
     return render(request, 'blog/home.html', context)
+
+
+def add_friend(request, id):
+    if request.GET.get('friendBtn'):
+        friend = get_object_or_404(User, id=id)
+        user = User
+        user.friends.add(friend)
+
+    return render(request, 'blog/home.html')
+
 

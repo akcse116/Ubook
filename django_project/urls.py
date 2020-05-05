@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from home import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('home.urls')),
