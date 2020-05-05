@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 import bcrypt
 from django.http import HttpResponse
 from user_profile.models import User
@@ -8,24 +8,31 @@ import base64
 import hashlib
 
 
+
 def home(request):
-    data = request.POST.copy()
-    pwd = data.get('password').encode()
-    email = data.get('email')
-    print(data)
-    if check_pwd(email,pwd):
-        token = gentoken()
-        response = HttpResponse("setting cookie")
-        response.set_cookie('auth_cookie', token)
-        token = base64.standard_b64encode(hashlib.sha256(token.encode()).digest()).decode()
-        user = User.objects.get(email=email)
-        user.token = token
-        user.save()
-        return response
-        
+    if request.POST:
+        data = request.POST.copy()
+        pwd = data.get('password').encode()
+        email = data.get('email')
+        print(data)
+        if check_pwd(email,pwd):
+            token = gentoken()
+            response = HttpResponse("setting cookie")
+            response.set_cookie('auth_cookie', token)
+            token = base64.standard_b64encode(hashlib.sha256(token.encode()).digest()).decode()
+            user = User.objects.get(email=email)
+            user.token = token
+            user.save()
+            return response
+
+        else:
+            print("invalid login")
+            return HttpResponse('invalid login')
     else:
         print("invalid login")
-        return HttpResponse('invalid login')
+        response = redirect('/')
+        return response
+        # return HttpResponse('invalid login')
 
 
 def check_pwd(email, password):
