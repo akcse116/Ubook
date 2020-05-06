@@ -5,6 +5,7 @@
 <div id="nameInChat">
     <p id="userFullName">{{ user.first_name }} {{ user.last_name }}</p>
 </div>
+
 <div id="messenger">
     <div id="history">
         {% for userconvo in conversations %}
@@ -54,6 +55,9 @@
             </div>
         {% endfor %}
     </div>
+</div>
+
+
 </div>
 
 {% endblock content %}

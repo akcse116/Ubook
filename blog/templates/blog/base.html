@@ -10,7 +10,7 @@
     <link rel ="stylesheet" type="text/css" href = "{% static 'blog/main.css' %}">
     <script src="{% static 'blog/createSocket.js' %}"></script>
     <script src="{% static 'blog/ajax.js' %}"></script>
-    <style>
+    <!-- <style>
 
         .content{
             border: 3px steelblue;
@@ -34,7 +34,7 @@
             width:60%;
         }
 
-    </style>
+    </style> -->
     <title> Ubook </title>
 </head>
 
@@ -42,14 +42,16 @@
     <div class="topnav">
       <a href = "/">
         <img id = "main_logo"  src="{% static 'blog/symbollogo.png' %}" alt="logo" />
-      </a>
-        <a href = "/user_profile">
-            Profile
+      </a >
+        <a class = "nav_links" href = "/user_profile">
+            Profile 
         </a>
-        <a href = "/blog">
+        <br>
+        <a class = "nav_links" href = "/blog">
             Blog
         </a>
-        <a href = "/message">
+        <br>
+        <a class = "nav_links" href = "/message">
             Message
         </a>
         <div id="logout">

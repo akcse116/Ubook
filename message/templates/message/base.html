@@ -7,31 +7,37 @@
 
     <link rel ="stylesheet" type="text/css" href = "{% static 'message/chatStyle.css' %}">
     <script src="{% static 'message/messageScript.js' %}"></script>
+    
     <title> Ubook </title>
 </head>
 
 <body>
-<div class="topnav">
-    <a href = "/">
-        <img id = "main_logo"  src="{% static 'message/symbollogo.png' %}" alt="logo" />
-    </a>
-    <a href = "/user_profile">
-        Profile
-    </a>
-    <a href = "/blog">
-        Blog
-    </a>
-    <a href = "/message">
-        Message
-    </a>
-</div>
-<div id="logout">
-    <button class="logout_btn" onclick="logout_user()">Log out</button>
+    <div class="topnav">
+      <a href = "/">
+        <img id = "main_logo"  src="{% static 'blog/symbollogo.png' %}" alt="logo" />
+      </a >
+        <a class = "nav_links" href = "/user_profile">
+            Profile 
+        </a>
+        <br>
+        <a class = "nav_links" href = "/blog">
+            Blog
+        </a>
+        <br>
+        <a class = "nav_links" href = "/message">
+            Message
+        </a>
+        <div id="logout">
+            <button class="logout_btn" onclick="logout_user()" style="float: right">Log out</button>
 
-</div>
-<div class = "container">
-        {% block content %} {% endblock content %}
+        </div>
     </div>
 
-  </body>
+   
+
+  <div class = "container">
+    {% block content %} {% endblock content %}
+  </div>
+
+</body>
 </html>

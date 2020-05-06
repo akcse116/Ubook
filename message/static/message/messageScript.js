@@ -65,6 +65,7 @@ function addToLog(){
 }
 
 function switchConvo(event){
+    
     let idtracker = document.getElementById('currentId');
     if(event.className !== 'histLogsHighlighted'){
         const userswitch = new XMLHttpRequest();
@@ -113,7 +114,9 @@ function switchConvo(event){
     }
 
 
+
 }
+
 
 
 

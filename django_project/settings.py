@@ -88,16 +88,22 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ubook_db',
-        'USER': 'admin',
-        # 'PASSWORD': os.environ['MYSQL_PASSWORD'],
-        'PASSWORD': 'wh-eJ89*8N',
-        # 'HOST': 'db',   # use this version in docker
-        'HOST': 'ubook-db.c7yahtelq3bh.us-east-1.rds.amazonaws.com',  # Or an IP Address that your DB is hosted on
-        'PORT': '3306'
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'ubook_db',
+    #     'USER': 'admin',
+    #     # 'PASSWORD': os.environ['MYSQL_PASSWORD'],
+    #     'PASSWORD': 'wh-eJ89*8N',
+    #     # 'HOST': 'db',   # use this version in docker
+    #     'HOST': 'ubook-db.c7yahtelq3bh.us-east-1.rds.amazonaws.com',  # Or an IP Address that your DB is hosted on
+    #     'PORT': '3306'
+    # }
+    
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'ubook_db',
+        }
+
 }
 
 
