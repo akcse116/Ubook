@@ -9,8 +9,8 @@
     <div id='write_post'>
         <form id="postinput" action="" method="POST" enctype="multipart/form-data" onsubmit="sendPost(); return false;">
             {% csrf_token %}
-            <label for = "post-body">What's on your mind?  </label>
-            <input id= "post-body" type="text" name="post-body"><br>
+            <label for = "post-body">What's on your mind?  </label><br>
+            <input id= "post-body" type="text"  name="post-body"><br>
 
             <label for="post-media">attachment</label>
             <input id="post-media" type="file" name="post-media">
@@ -153,6 +153,7 @@
     </div>
 
 </div>
+
 <div id="notifications">
     <div id="notificationlabel">
         <p>Notifications</p>

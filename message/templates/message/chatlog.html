@@ -5,6 +5,7 @@
 <div id="nameInChat">
     <p id="userFullName">{{ user.first_name }} {{ user.last_name }}</p>
 </div>
+
 <div id="messenger">
     <div id="history">
         {% for userconvo in conversations %}
@@ -54,6 +55,20 @@
             </div>
         {% endfor %}
     </div>
+</div>
+
+<div id="startChat">
+    <select id="friends_list" onchange="startConvo()">
+        <option value="1">
+            - - select a friend - - 
+        </option >
+        {% for friend in user.friends.all %}
+           <option value="{{friend.username}}">
+            {{ friend.username }}
+           </option>
+        {% endfor %}
+        
+    </select>
 </div>
 
 {% endblock content %}
