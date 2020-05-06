@@ -8,7 +8,6 @@ import base64
 import hashlib
 
 
-
 def home(request):
     if request.POST:
         data = request.POST.copy()
@@ -24,7 +23,6 @@ def home(request):
             user.token = token
             user.save()
             return response
-
         else:
             print("invalid login")
             return HttpResponse('invalid login')
@@ -45,7 +43,6 @@ def check_pwd(email, password):
             return True
         else:
             return False
-
     else:
         return False
 
