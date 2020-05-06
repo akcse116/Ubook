@@ -39,7 +39,7 @@
                 <div class="post_header">
                     <img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>
 
-                    <p>{{post.0.author}}</p>
+                    <p>{{post.0.author.first_name}} {{post.0.author.last_name}}</p>
 
                 </div>
 

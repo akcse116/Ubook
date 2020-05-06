@@ -64,15 +64,15 @@ def createPost(request):
             name = name.replace('<', '&lt;')
             name = name.replace('>', '&gt;')
 
-            friends = user.friends.all()
 
             #send post information via websockets
             for i in connected.keys():
                 if connected[i]:
                     otheruser = User.objects.filter(username=addrtouser[i]).first()
+                    friends = otheruser.friends.all()
                     isfriend = False
                     if otheruser:
-                        isfriend = friends.filter(id=otheruser.id).exists()
+                        isfriend = friends.filter(id=user.id).exists()
                     print(isfriend)
                     print(otheruser)
                     print(friends)
