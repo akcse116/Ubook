@@ -22,7 +22,9 @@ def home(request):
             logs = Message.objects.filter(Q(author=user) | Q(recipient=user))
             friends = user.friends.all()
             for userfriend in friends:
-                conversations.append(userfriend)
+                otherfriends = userfriend.friends.all()
+                if otherfriends.filter(id=user.id).exists():
+                    conversations.append(userfriend)
 
             for msg in logs:
                 if msg.recipient == conversations[0] or msg.author == conversations[0]:
@@ -71,7 +73,8 @@ def switchconvo(request, user):
     user = User.objects.filter(username=user).first()
     if user and currentuser:
         friends = user.friends.all()
-        legitfriends = friends.filter(id=currentuser.id).exists()
+        otherfriends = currentuser.friends.all()
+        legitfriends = friends.filter(id=currentuser.id).exists() and otherfriends.filter(id=user.id).exists()
         if legitfriends:
             currentchatlog = Message.objects.filter((Q(author=user) | Q(recipient=user)) &
                                                     (Q(author=currentuser) | Q(recipient=currentuser)))
