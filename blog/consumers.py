@@ -59,19 +59,35 @@ def createPost(request):
             body = body.replace('&', '&amp;')
             body = body.replace('<', '&lt;')
             body = body.replace('>', '&gt;')
+            name = record.author.first_name + ' ' + record.author.last_name
+            name = name.replace('&', '&amp;')
+            name = name.replace('<', '&lt;')
+            name = name.replace('>', '&gt;')
+
+            friends = user.friends.all()
 
             #send post information via websockets
-            for i in connected.values():
-                i.send(text_data=json.dumps({
-                    'type': 'post',
-                    'body': body,
-                    'author': record.author.first_name + ' ' + record.author.last_name,
-                    'username': record.author.username,
-                    'date': str(record.date_posted),
-                    'media': hasImg,
-                    'id': record.id,
-                    'medialink': media_name
-                }))
+            for i in connected.keys():
+                if connected[i]:
+                    otheruser = User.objects.filter(username=addrtouser[i]).first()
+                    isfriend = False
+                    if otheruser:
+                        isfriend = friends.filter(id=otheruser.id).exists()
+                    print(isfriend)
+                    print(otheruser)
+                    print(friends)
+                    print(addrtouser[i])
+                    connected[i].send(text_data=json.dumps({
+                        'type': 'post',
+                        'body': body,
+                        'author': name,
+                        'username': record.author.username,
+                        'date': str(record.date_posted),
+                        'media': hasImg,
+                        'id': record.id,
+                        'medialink': media_name,
+                        'friend': isfriend
+                    }))
             return HttpResponse("received")
         return HttpResponse("error invalid auth_cookie")
     return HttpResponse("error invalid auth_cookie")
@@ -141,12 +157,15 @@ class BlogConsumer(WebsocketConsumer):
                     user.save()
                     likestatus = True
 
-                for i in connected.values():
-                    if i:
-                        i.send(text_data=json.dumps({
+                print(usersockets)
+
+                for i in usersockets[user.username]:
+                    if i in connected and connected[i]:
+                        connected[i].send(text_data=json.dumps({
                             'type': 'like',
                             'id': text_data_json['id'],
-                            'status': likestatus
+                            'status': likestatus,
+                            'user': text_data_json['user']
                         }))
         elif text_data_json['type'] == 'comment':
             body = text_data_json['body']
@@ -158,6 +177,10 @@ class BlogConsumer(WebsocketConsumer):
                 body = body.replace('&', '&amp;')
                 body = body.replace('<', '&lt;')
                 body = body.replace('>', '&gt;')
+                name = record.author.first_name + ' ' + record.author.last_name
+                name = name.replace('&', '&amp;')
+                name = name.replace('<', '&lt;')
+                name = name.replace('>', '&gt;')
 
                 for i in connected.values():
                     if i:
@@ -167,6 +190,6 @@ class BlogConsumer(WebsocketConsumer):
                             'parentid': record.parent_id,
                             'date': str(record.date_posted),
                             'body': body,
-                            'author': record.author.first_name + ' ' + record.author.last_name,
+                            'author': name,
                             'username': record.author.username,
                         }))

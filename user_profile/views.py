@@ -10,10 +10,10 @@ import hashlib
 
 def home(request):
 
-    posts = Post.objects.filter(parent_id=None).order_by('date_posted').reverse()
     context = {
         'posts': [],
-        'unseen': []
+        'unseen': [],
+        'user': ''
     }
 
     # this if block and the 'unseen' key in context is for dm notifications
@@ -21,15 +21,19 @@ def home(request):
         token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
         print(token)
         user = User.objects.filter(token=token).first()
-        if user:
+        if user and user.token != '':
+            likes = user.likes.all()
+            posts = Post.objects.filter(parent_id=None, author=user).order_by('date_posted').reverse()
             context['unseen'] = Message.objects.filter(Q(recipient=user) & Q(seen=False))
+            context['user'] = user
 
-        for i in posts:
-            comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
-            if comments:
-                context['posts'].append([i, comments])
-            else:
-                context['posts'].append([i, []])
+            for i in posts:
+                isliked = likes.filter(id=i.id).exists()
+                comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
+                if comments:
+                    context['posts'].append([i, comments, isliked])
+                else:
+                    context['posts'].append([i, [], isliked])
 
-        return render(request, 'user_profile/profile.html', context)
+            return render(request, 'user_profile/profile.html', context)
     return redirect('/')

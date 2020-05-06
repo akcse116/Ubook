@@ -13,7 +13,11 @@ socket.onmessage = function (e) {
         const user = document.getElementById('main_username').innerText;
         let friendbtn = '';
         if(info.username !== user){
-            friendbtn = '<button type=\'submit\' class="btn" name="friendBtn" onclick="friend(this);">Friend User</button>';
+            if(info.friend){
+                friendbtn = '<button type=\'submit\' class="btn" name="friendBtn" onclick="friend(this);">Unfriend User</button>';
+            }else{
+                friendbtn = '<button type=\'submit\' class="btn" name="friendBtn" onclick="friend(this);">Friend User</button>';
+            }
         }
         container.insertAdjacentHTML("afterbegin",
             "<article class = \"post\" id=" + info.id + ">"+
@@ -38,7 +42,7 @@ socket.onmessage = function (e) {
             "            <div class = \"post-meta\">" +
                             info.author +
             "                Published: " + info.date +
-            "                <p class=\"post-user\">" + info.username + "</p>"+
+            "                <p class=\"post-user\" style=\"display: none\">" + info.username + "</p>"+
             "            </div>" +
             "        </article>"
         );

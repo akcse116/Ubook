@@ -16,21 +16,9 @@
 <header>
     <div id="header_bar">
         <div id="main_logo">
-            <a href="/home">
                 <img id="ubook_logo" src="{% static 'home/symbollogo.png' %}" alt="ubook logo"/>
-            </a>
         </div>
-        <div id="link_div">
-            <a href = "/user_profile">
-                Profile
-            </a>
-            <a href = "/blog">
-                Blog
-            </a>
-            <a href = "/message">
-                Message
-            </a>
-        </div>
+
         <form id="login" action="/login" method="POST" enctype="multipart/form-data" onsubmit="login_user();return false;">
             {% csrf_token %}
             <div id="username_div">

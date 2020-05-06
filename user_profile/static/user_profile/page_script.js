@@ -32,6 +32,6 @@ function logout_user() {
             window.location.replace("/");
         }
     };
-    logout_request.open("GET", "/user_logout");
+    logout_request.open("GET", "/login/logout/");
     logout_request.send();
 }

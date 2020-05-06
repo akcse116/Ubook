@@ -7,8 +7,9 @@
             <img id="profile_img" src="{% static 'user_profile/profile-placeholder.png' %}" alt="profile image"/>
         </div>
         <div id="profile_username">
-            <p>User Name</p>
+            <p>{{user.first_name}} {{user.last_name}}</p>
         </div>
+        <p id="main_username" style="display: none">{{user.username}}</p>
 
         <div id="info_footer">
 
@@ -52,7 +53,7 @@
                         {{post.0.content}}
                     </p>
 
-                    {% if post.0.likes == 1 %}
+                    {% if post.2 %}
                     <button class="likebtn" onclick="sendLike(this);" style="background-color: #65ff74">
                         <img class="likebtn" src="{% static 'user_profile/like.png' %}">
                     </button>

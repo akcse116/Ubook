@@ -95,8 +95,10 @@ class ChatConsumer(WebsocketConsumer):
 
             senderuser = User.objects.filter(username=sender).first()
             recipientuser = User.objects.filter(username=recipient).first()
+            senderfriends = senderuser.friends.all()
+            isfriend = senderfriends.filter(id=recipientuser.id).exists()
 
-            if senderuser and recipientuser:
+            if senderuser and recipientuser and isfriend:
                 msg = Message(content=message, author=senderuser, recipient=recipientuser)
                 msg.save()
                 message = message.replace('&', '&amp;')

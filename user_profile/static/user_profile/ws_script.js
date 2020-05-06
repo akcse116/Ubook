@@ -41,31 +41,34 @@ socket.onmessage = function (e) {
         if(info.media){
             img = "<img src=" + info.medialink + " style=\"max-width: 300px; max-height: 300px\">";
         }
-        container.insertAdjacentHTML("afterbegin",
-            "<div class=\"container\" >" +
-            "            <div class=\"post_block\" id="+ info.id + ">" +
-            "                <div class=\"post_header\">" +
-                                img +
-            "                    <p>" + info.author + "</p>" +
-            "                </div>" +
-            "                <div class=\"post\">" +
-            "                    <p>" +
-                                    info.body +
-            "                    </p>" +
-            "                    <button class=\"likebtn\" onclick=\"sendLike(this);\">" +
-            "                        <i class =\"emoji\">&#128077;</i>" +
-            "                    </button>" +
-            "                </div>" +
-            "                <br><br>" +
-            "                <div class=\"comments\">" +
-            "                </div>" +
-            "                <div class=\"add_comment_post_div\">" +
-            "                    <textarea class=\"followup\" id=\"followup1\"></textarea>" +
-            "                    <button class=\"followup_comment_btn\" onclick=\"sendComment(this);\">Comment</button>" +
-            "                </div>" +
-            "            </div>" +
-            "        </div>"
+        if(info.author === document.getElementById('main_username').innerText){
+            container.insertAdjacentHTML("afterbegin",
+                "<div class=\"container\" >" +
+                "            <div class=\"post_block\" id="+ info.id + ">" +
+                "                <div class=\"post_header\">" +
+                img +
+                "                    <p>" + info.author + "</p>" +
+                "                </div>" +
+                "                <div class=\"post\">" +
+                "                    <p>" +
+                info.body +
+                "                    </p>" +
+                "                    <button class=\"likebtn\" onclick=\"sendLike(this);\">" +
+                "                        <i class =\"emoji\">&#128077;</i>" +
+                "                    </button>" +
+                "                </div>" +
+                "                <br><br>" +
+                "                <div class=\"comments\">" +
+                "                </div>" +
+                "                <div class=\"add_comment_post_div\">" +
+                "                    <textarea class=\"followup\" id=\"followup1\"></textarea>" +
+                "                    <button class=\"followup_comment_btn\" onclick=\"sendComment(this);\">Comment</button>" +
+                "                </div>" +
+                "            </div>" +
+                "        </div>"
             );
+        }
+
     }else if(info.type === 'message'){
         console.log(info);
         document.getElementById("notificationcontent").innerHTML += (
@@ -104,7 +107,8 @@ function sendLike(elem){
     console.log(elem.parentNode.parentNode.id);
     socket.send(JSON.stringify({
         type: "like",
-        id: elem.parentNode.parentNode.id
+        id: elem.parentNode.parentNode.id,
+        user: document.getElementById('main_username').innerText
     }));
 }
 
@@ -116,7 +120,8 @@ function sendComment(elem){
     socket.send(JSON.stringify({
         type: "comment",
         id: id,
-        body: input.value
+        body: input.value,
+        user: document.getElementById('main_username').innerText
     }));
     input.value = ""
 }

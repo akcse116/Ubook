@@ -49,25 +49,28 @@ def home(request):
         token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
         print(token)
         user = User.objects.filter(token=token).first()
-        if user:
+        if user and user.token != '':
             context['unseen'] = Message.objects.filter(Q(recipient=user) & Q(seen=False))
             context['user'] = user
             friends = user.friends.all()
+            likes = user.likes.all()
 
             for i in posts:
                 comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
                 isself = i.author == user
                 isfriend = friends.filter(id=i.author.id).exists()
+                isliked = likes.filter(id=i.id).exists()
+                print(isliked)
                 if comments:
                     if isfriend:
-                        context['friendposts'].append([i, comments, isself, isfriend])
+                        context['friendposts'].append([i, comments, isself, isfriend, isliked])
                     else:
-                        context['posts'].append([i, comments, isself, isfriend])
+                        context['posts'].append([i, comments, isself, isfriend, isliked])
                 else:
                     if isfriend:
-                        context['friendposts'].append([i, [], isself, isfriend])
+                        context['friendposts'].append([i, [], isself, isfriend, isliked])
                     else:
-                        context['posts'].append([i, [], isself, isfriend])
+                        context['posts'].append([i, [], isself, isfriend, isliked])
             print(context)
             return render(request, 'blog/home.html', context)
     return redirect('/')

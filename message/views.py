@@ -18,21 +18,25 @@ def home(request):
         token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
         print(token)
         user = User.objects.filter(token=token).first()
-        if user:
+        if user and user.token != '':
             logs = Message.objects.filter(Q(author=user) | Q(recipient=user))
-
-            for msg in logs:
-                if msg.recipient != user and msg.recipient not in conversations:
-                    conversations.insert(0, msg.recipient)
-                elif msg.author != user and msg.author not in conversations:
-                    conversations.insert(0, msg.author)
+            friends = user.friends.all()
+            for userfriend in friends:
+                conversations.append(userfriend)
 
             for msg in logs:
                 if msg.recipient == conversations[0] or msg.author == conversations[0]:
-                    currentchatlog.append(msg)
                     if msg.recipient == user and not msg.seen:
                         msg.seen = True
                         msg.save()
+                        if msg.recipient.username in blog.consumers.usersockets:
+                            for i in blog.consumers.usersockets[msg.recipient.username]:
+                                if i in blog.consumers.connected and blog.consumers.connected[i]:
+                                    blog.consumers.connected[i].send(text_data=json.dumps({
+                                        'type': 'seen',
+                                        'sender': msg.author.username
+                                    }))
+                    currentchatlog.append(msg)
                 elif msg.recipient != conversations[0] and msg.recipient == user and not msg.seen:
                     unseen.append(msg)
 
@@ -65,34 +69,42 @@ def switchconvo(request, user):
     token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
     currentuser = User.objects.filter(token=token).first()
     user = User.objects.filter(username=user).first()
-    currentchatlog = Message.objects.filter((Q(author=user) | Q(recipient=user)) &
-                                            (Q(author=currentuser) | Q(recipient=currentuser)))
+    if user and currentuser:
+        friends = user.friends.all()
+        legitfriends = friends.filter(id=currentuser.id).exists()
+        if legitfriends:
+            currentchatlog = Message.objects.filter((Q(author=user) | Q(recipient=user)) &
+                                                    (Q(author=currentuser) | Q(recipient=currentuser)))
 
-    full = []
-    for i in currentchatlog:
-        if not i.seen and i.recipient == currentuser:
-            i.seen = True
-            i.save()
-        full.append((i.author.username, i.content))
-    # full = [(i.author.username, i.content) for i in currentchatlog]
-    recipient = currentuser.username
-    sender = user.username
-    print(blog.consumers.usersockets)
-    print(user.username)
-    if recipient in blog.consumers.usersockets:
-        for i in blog.consumers.usersockets[recipient]:
-            if i in blog.consumers.connected and blog.consumers.connected[i]:
-                blog.consumers.connected[i].send(text_data=json.dumps({
-                    'type': 'seen',
-                    'sender': sender
-                }))
-    if full:
-        response = json.dumps(full)
-        response = HttpResponse(response)
-        response.set_cookie('current_user_chat', user)
-    else:
-        response = json.dumps(False)
-        response = HttpResponse(response)
+            full = []
+            for i in currentchatlog:
+                if not i.seen and i.recipient == currentuser:
+                    i.seen = True
+                    i.save()
+                message = i.content
+                message = message.replace('&', '&amp;')
+                message = message.replace('<', '&lt;')
+                message = message.replace('>', '&gt;')
+                full.append((i.author.username, message))
+            # full = [(i.author.username, i.content) for i in currentchatlog]
+            recipient = currentuser.username
+            sender = user.username
+            print(blog.consumers.usersockets)
+            print(user.username)
+            if recipient in blog.consumers.usersockets:
+                for i in blog.consumers.usersockets[recipient]:
+                    if i in blog.consumers.connected and blog.consumers.connected[i]:
+                        blog.consumers.connected[i].send(text_data=json.dumps({
+                            'type': 'seen',
+                            'sender': sender
+                        }))
+            response = json.dumps(full)
+            response = HttpResponse(response)
+            response.set_cookie('current_user_chat', user)
+            return response
+
+    response = json.dumps(False)
+    response = HttpResponse(response)
 
     return response
 

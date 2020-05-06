@@ -1,12 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import string
 from user_profile.models import User
 import bcrypt
 from random import choice
+import base64
+import hashlib
+import re
 
 
 def home(request):
+    if request.COOKIES.get('auth_cookie'):
+        token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
+        print(token)
+        user = User.objects.filter(token=token).first()
+        if user and user.token != '':
+            return redirect('/blog/')
     return render(request, 'home/welcome.html')
 
 
@@ -24,7 +33,10 @@ def register(request):
         return HttpResponse("Account already exists with this email")
     elif checkpass[0] and firstname and email:
         password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-        user = User(username=(firstname + '_' + lastname + '_' + gentoken()), first_name=firstname, last_name=lastname, email=email, password=password.decode())
+        username = (firstname + '_' + lastname + '_' + gentoken())
+        username = re.sub('\W+', '_', username)
+        # username = username.translate(str.maketrans('', '', string.punctuation))
+        user = User(username=username, first_name=firstname, last_name=lastname, email=email, password=password.decode())
         print(user.password)
         user.save()
         return HttpResponse(checkpass[1])

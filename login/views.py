@@ -56,3 +56,16 @@ def gentoken():
     for i in range(15):
         token += choice(options)
     return str(token.encode())
+
+
+def logout(request):
+    if request.COOKIES.get('auth_cookie'):
+        token = base64.standard_b64encode(hashlib.sha256(request.COOKIES.get('auth_cookie').encode()).digest()).decode()
+        print(token)
+        user = User.objects.filter(token=token).first()
+        if user and user.token != '':
+            user.token = ''
+            user.save()
+        response = redirect('/')
+        response.delete_cookie('auth_cookie')
+    return redirect('/')
