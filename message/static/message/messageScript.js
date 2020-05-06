@@ -116,13 +116,7 @@ function switchConvo(event){
 
 
 }
-function startConvo(event) {
-    var startChatElem = document.getElementById("startChat");
-    console.log(startChatElem.value)
-    // const url = '/message/room/' + friend + '/';
-    // userswitch.open('GET', url);
-    // userswitch.send()  
-}
+
 
 
 
