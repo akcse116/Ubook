@@ -3,61 +3,72 @@
 {% block content %}
 
 <div id="nameInChat">
-    <p id="userFullName">{{ user.first_name }} {{ user.last_name }}</p>
+    <p id="userFullName"> Logged in as : {{ user.first_name }} {{ user.last_name }}</p>
 </div>
 
-<div id="messenger">
-    <div id="history">
-        {% for userconvo in conversations %}
-            <div class="histLogs" id={{userconvo.username}} onclick="switchConvo(this);">
-                <h1 class="userInChat">{{ userconvo.first_name }} {{ userconvo.last_name }}</h1>
-            </div>
-            <div class="divider"></div>
-        {% endfor %}
-        <script>
-            document.getElementsByClassName("histLogs")[0].className = 'histLogsHighlighted';
-        </script>
-        <p id="currentId">{{ conversations.0.username }}</p>
-        <p id="userId">{{ user.username }}</p>
-    </div>
-    <div class="log">
-        <div id="messageLog">
-            {% for message in log %}
-                {% if message.author == user %}
-                    <div class="yourMessage">{{ message.content }}</div>
-                {% else %}
-                    <div class="otherMessage">{{ message.content }}</div>
-                {% endif %}
+<div id="chat_container">
+
+    <div id="messenger">
+        <div id="history">
+            Click to Start Conversation:
+            {% for userconvo in conversations %}
+                <div class="histLogs" id={{userconvo.username}} onclick="switchConvo(this);">
+                    
+                    <h1 class="userInChat">{{ userconvo.first_name }} {{ userconvo.last_name }}</h1>
+                </div>
+                <div class="divider"></div>
             {% endfor %}
+            
+        </div>
+        <div class="log">
+            <div>
+                <script>
+                    document.getElementsByClassName("histLogs")[0].className = 'histLogsHighlighted';
+                </script>
+                Users in Chat:
+                <p id="currentId">{{ conversations.0.username }}</p>
+                <p id="userId">{{ user.username }}</p>
+            </div>
+            
+            <div id="messageLog">
+                {% for message in log %}
+                    {% if message.author == user %}
+                        <div class="yourMessage">{{ message.content }}</div>
+                    {% else %}
+                        <div class="otherMessage">{{ message.content }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            {% if conversations %}
+                <div id="messageInput" >
+                    <form id="input" onsubmit="addToLog();return false;">
+                        <input type="text" id="inputMessage"/>
+                        <input type="submit" id="sendButton" value="Send"/>
+                    </form>
+                </div>
+            {% endif %}
+
         </div>
 
-        {% if conversations %}
-            <div id="messageInput" >
-                <form id="input" onsubmit="addToLog();return false;">
-                    <input type="text" id="inputMessage"/>
-                    <input type="submit" id="sendButton" value="Send"/>
-                </form>
-            </div>
-        {% endif %}
-
     </div>
-
-</div>
-<div id="notifications">
-    <div id="notificationlabel">
-        <p>Notifications</p>
+    
+    <div id="notifications">
+        <div id="notificationlabel">
+            <p>Notifications</p>
+        </div>
+        <div id="notificationcontent">
+            {% for notif in unseen %}
+                <div class="note">
+                    <p class="notifuser">{{ notif.author.username }}</p>
+                    <b>{{ notif.author.first_name }} {{ notif.author.last_name }}</b>: {{ notif.content }}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div id="notificationcontent">
-        {% for notif in unseen %}
-            <div class="note">
-                <p class="notifuser">{{ notif.author.username }}</p>
-                <b>{{ notif.author.first_name }} {{ notif.author.last_name }}</b>: {{ notif.content }}
-            </div>
-        {% endfor %}
-    </div>
-</div>
 
 
 </div>
+
 
 {% endblock content %}
