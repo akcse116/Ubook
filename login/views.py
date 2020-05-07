@@ -18,7 +18,7 @@ def home(request):
         if check_pwd(email,pwd):
             token = gentoken()
             response = HttpResponse("setting cookie")
-            response.set_cookie('auth_cookie', token)
+            response.set_cookie('auth_cookie', token, httponly=True)
             token = base64.standard_b64encode(hashlib.sha256(token.encode()).digest()).decode()
             user = User.objects.get(email=email)
             user.token = token
