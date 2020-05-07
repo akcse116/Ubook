@@ -37,6 +37,14 @@ body {
     
 }  */
 
+.histLogsHighlighted{
+    color:blue;
+}
+
+.histLogs:hover{
+    cursor: pointer;
+    color: blue;
+}
 
 .button {
     background-color: whitesmoke;

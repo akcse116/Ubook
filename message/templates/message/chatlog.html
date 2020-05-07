@@ -26,8 +26,10 @@
                     document.getElementsByClassName("histLogs")[0].className = 'histLogsHighlighted';
                 </script>
                 Users in Chat:
-                <p id="currentId">{{ conversations.0.username }}</p>
-                <p id="userId">{{ user.username }}</p>
+                <p>{{ conversations.0.first_name }} {{ conversations.0.last_name }}</p>
+                <p>{{ user.first_name }} {{ user.last_name }}</p>
+                <p id="currentId" style="display: none;">{{ conversations.0.username }}</p>
+                <p id="userId" style="display: none;">{{ user.username }}</p>
             </div>
             
             <div id="messageLog">

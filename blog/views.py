@@ -18,12 +18,14 @@ def home(request):
             media_ID = random.randrange(1000000)
             media_type = media.name.split('.')[1]
             upload_name = 'upload_'+ str(media_ID) +'.'+ media_type
-            media_name = 'http://'+ request.META['HTTP_HOST'] + settings.MEDIA_URL + upload_name
+            # media_name = 'http://'+ request.META['HTTP_HOST'] + settings.MEDIA_URL + upload_name
+            media_name = settings.MEDIA_URL + upload_name
             while Post.objects.filter(media = media_name):
                 media_ID = random.randrange(1000000)
                 media_type = media.name.split('.')[1]
                 upload_name = 'upload_'+ str(media_ID) +'.'+ media_type
-                media_name = 'http://'+ request.META['HTTP_HOST'] + settings.MEDIA_URL + upload_name
+                # media_name = 'http://'+ request.META['HTTP_HOST'] + settings.MEDIA_URL + upload_name
+                media_name = settings.MEDIA_URL + upload_name
             storage_file_path = settings.MEDIA_ROOT + '/'+ upload_name
             file_content = media.file.read()
             with open(storage_file_path, 'wb') as file:
@@ -54,24 +56,23 @@ def home(request):
             context['user'] = user
             friends = user.friends.all()
             likes = user.likes.all()
+            hostname = 'http://'+ request.META['HTTP_HOST']
 
             for i in posts:
                 comments = Post.objects.filter(parent_id=i.id).order_by('date_posted')
                 isself = i.author == user
                 isfriend = friends.filter(id=i.author.id).exists()
                 isliked = likes.filter(id=i.id).exists()
-                print(isliked)
                 if comments:
                     if isfriend:
-                        context['friendposts'].append([i, comments, isself, isfriend, isliked])
+                        context['friendposts'].append([i, comments, isself, isfriend, isliked, hostname + str(i.media)])
                     else:
-                        context['posts'].append([i, comments, isself, isfriend, isliked])
+                        context['posts'].append([i, comments, isself, isfriend, isliked, hostname + str(i.media)])
                 else:
                     if isfriend:
-                        context['friendposts'].append([i, [], isself, isfriend, isliked])
+                        context['friendposts'].append([i, [], isself, isfriend, isliked, hostname + str(i.media)])
                     else:
-                        context['posts'].append([i, [], isself, isfriend, isliked])
-            print(context)
+                        context['posts'].append([i, [], isself, isfriend, isliked, hostname + str(i.media)])
             return render(request, 'blog/home.html', context)
     return redirect('/')
 

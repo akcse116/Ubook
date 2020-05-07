@@ -41,7 +41,7 @@ socket.onmessage = function (e) {
         if(info.media){
             img = "<img src=" + info.medialink + " style=\"max-width: 300px; max-height: 300px\">";
         }
-        if(info.author === document.getElementById('main_username').innerText){
+        if(info.username === document.getElementById('main_username').innerText){
             container.insertAdjacentHTML("afterbegin",
                 "<div class=\"container\" >" +
                 "            <div class=\"post_block\" id="+ info.id + ">" +
