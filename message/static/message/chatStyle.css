@@ -1,37 +1,79 @@
+
 body {
     background-color:#e9eaee;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
     color:black;
-    margin-top: 1rem;
-    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    /*margin: 1rem 0 0 0;*/
 }
-
 .topnav {
     background-color: #3B5998;
     width: 100%;
-    height: 100px;
-    position: absolute;
-    top: 0;
+    height: 80px;
+}
+.nav_links {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+.container {
+    width:100%;
+    margin: 0 1% 0 1%;
+}
+#main_logo{
+    /*width: 100px;*/
+    height: 65px;
+    float: left; 
 }
 
-.container{
-    max-width: 60vw;
-    margin: auto;
+/* .content-container {
+    background-color:#DCDCDC;
+    display: flex;
+    justify-content: center; 
+    width: 95%;
+    height: 95%;
+    
+}  */
+
+
+.button {
+    background-color: whitesmoke;
+    /*border-radius: 4px;*/
+
 }
+.logout_btn{
+    color: #FFFFFF;
+    float: left;
+    display: inline-block;
+    margin: 20px 10px 0 10px;
+    border-radius: 5px;
+    background-color: #3864bc;
+    border: solid 1px #303030;
+    padding: 2px;
+    width: 60px;
+}
+.logout_btn:hover{
+    background-color: #3B5998;
+}
+  
 
 #notifications{
-    position: absolute;
-    top: 15%;
-    right: 1%;
-    min-width: 15vw;
-    max-width: 15vw;
-    max-height: 50vh;
-    overflow: scroll;
+    /* position: absolute; */
+    /* top: 50%;
+    left: 1%;
+    height: 40%;
+    width: 30%; */
+    
+    
 }
 
 #notificationlabel{
     background-color: #3864bc;
     color: white;
     padding: 2%;
+    word-wrap: break-word;
 }
 
 #notificationcontent{
@@ -43,164 +85,69 @@ body {
 
 .note{
     border: #3864bc 2px solid;
-    min-height: 50px;
+    /* min-height: 50px; */
 }
 
 .notifuser{
     display: none;
 }
+/* .container {
+    font-family: "Lucida Console", Courier, monospace;
+} */
+ #chat_container {
+    font-family: "Lucida Console", Courier, monospace;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: nowrap;
+     margin: 10px;
+ } 
 
-#messenger{
+ #notifications {
+    width: 100px;
+    height: 90%;
+    order: 1;
+    text-align: center;
+    font-size: 10px;
+
+ }
+ #messenger {
+     width: 900px;
+     height: 90%;
+     order: 2;
+     text-align: center;
     display: flex;
-    background-color: midnightblue;
-    margin-left: auto;
-    margin-right: auto;
-    max-height: 65vh;
-    min-height: 65vh;
+    flex-direction: row;
+    margin: 10px;
+ }
 
-}
+ .log {
+     width: 700px;
+     height: 600px;
+     background-color:  #c3edfd;
+     border: black 2px;
+     border-style: solid;
+     border-radius: 5%;
 
-#history{
-    width: 200px;
-    color: white;
-    border-style: solid;
-    border-width: 1px;
-    overflow: scroll;
-}
+     
 
-.histLogs{
-    padding: 3%;
-    overflow: hidden;
-}
-
-.histLogsHighlighted{
-    padding: 3%;
-    background-color: #3864bc;
-}
-
-.histLogs:hover{
-    color: lightblue;
-}
-
-#currentId{
-    display: none;
-}
-
-#userId{
-    display: none;
-}
-
-#nameInChat{
-    background-color: midnightblue;
-    margin-top: 20vh;
-    min-height: 5vh;
-    padding: 1%;
-}
-
-#userFullName{
-    color: white;
-}
-
-.userInChat{
-    font-size: 18px;
-}
-.lastSent{
-    font-size: 12px;
-    color: lightblue;
-    line-height: 1px;
-}
-.lastMessage{
-    font-size: 16px;
-    height: 20px;
-    max-height: 25px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.divider{
-    background-color: white;
-    height: 1px;
-    min-width: 100%;
-}
-
-.log{
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    color: white;
-    border-style: solid;
-    border-width: 1px;
-    overflow: scroll;
-}
-
-#messageLog{
-    flex-grow: 1;
-    overflow: scroll;
-    position: relative;
-}
-
-.yourMessage{
-    background-color: #3864bc;
-    border-radius: 5px;
-    margin: 5% 2% 5% auto;
-    padding: 2%;
-    max-width: 50%;
-    word-wrap: break-word;
-}
-
-
-.yourMessage{
-    background-color: #3864bc;
-    padding: 2%;
-    max-width: 50%;
-    margin: 5% 2% 5% auto;
-    border-radius: 5px;
-    word-wrap: break-word;
-}
-
-.otherMessage{
-    background-color: #3864bc;
-    padding: 2%;
-    max-width: 50%;
-    margin: 5% auto 5% 2%;
-    border-radius: 5px;
-    word-wrap: break-word;
-}
-
-#messageInput{
-    display: flex;
-    background-color: white;
-    height: 30px;
-    max-height: 30px;
-    padding: 1%;
-}
-
-#input{
-    display: flex;
-    width: 100%;
-}
-
-#inputMessage{
-    flex-grow: 1;
-}
-
-#sendButton{
-    margin-left: 1%;
-    font-size: 16px;
-    background-color: #3864bc;
-    color: white;
-}
-.logout_btn{
-    color: #FFFFFF;
-    float: left;
-    display: inline-block;
-    margin-left: 10px;
-    margin-top: 20px;
-    border-radius: 5px;
-    background-color: #3864bc;
-    border: solid 1px #303030;
-    padding: 2px;
-    width: 60px;
-}
-.logout_btn:hover{
-    background-color: #3B5998;
-}
+ }
+ .userInChat {
+    font-size: 15px;
+ }
+ #messagelog {
+    order: 1;
+ }
+ #messageinput {
+    order:2;
+ }
+ .yourMessage {
+    text-align: right;
+    margin-right: 10px;
+ }
+ .otherMessage {
+     margin-left: 10px;
+    text-align: left;
+ }
+ #messageInput {
+    text-align: right;   
+ }
