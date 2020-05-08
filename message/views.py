@@ -52,10 +52,6 @@ def home(request):
                 'unseen': unseen
             }
             response = render(request, 'message/chatlog.html', context)
-            if conversations:
-                response.set_cookie('current_user_chat', conversations[0].username)
-            else:
-                response.set_cookie('current_user_chat', '0')
         else:
             response = redirect('/')
     else:
@@ -103,7 +99,6 @@ def switchconvo(request, user):
                         }))
             response = json.dumps(full)
             response = HttpResponse(response)
-            response.set_cookie('current_user_chat', user)
             return response
 
     response = json.dumps(False)
