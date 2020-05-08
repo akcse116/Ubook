@@ -161,7 +161,7 @@
     <div id="notificationcontent">
         {% for notif in unseen %}
         <div class="note">
-            <p class="notifuser"> {{ notif.author.username }} </p>
+            <p class="notifuser">{{ notif.author.username }}</p>
             <b>{{ notif.author.first_name }} {{ notif.author.last_name }}</b>: {{ notif.content }}
         </div>
         {% endfor %}
