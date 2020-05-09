@@ -135,7 +135,15 @@ class BlogConsumer(WebsocketConsumer):
         self.accept()
 
     def disconnect(self, close_code):
+        usersock = addrtouser[self.name]
+        try:
+            usersockets[usersock].remove(self.name)
+        except ValueError:
+            pass
         del connected[self.name]
+        del addrtouser[self.name]
+        if len(usersockets[usersock]) <= 0:
+            del usersockets[usersock]
         print("disconnected")
         pass
 
