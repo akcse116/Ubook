@@ -1,64 +1,52 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>UBook - Blog</title>
+    <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"><!-- google font -->
     <link rel ="stylesheet" type="text/css" href = "{% static 'blog/main.css' %}">
     <script src="{% static 'blog/createSocket.js' %}"></script>
     <script src="{% static 'blog/ajax.js' %}"></script>
-    <!-- <style>
 
-        .content{
-            border: 3px steelblue;
-        }
-
-        .log-form{
-            margin: auto;
-            margin-top: 20%;
-            display: block;
-            border: 3px solid blue;
-            text-align: center;
-            width:60%;
-        }
-
-        .sign-form{
-            margin: auto;
-            margin-top: 10%;
-            display: block;
-            border: 3px solid orangered;
-            text-align: center;
-            width:60%;
-        }
-
-    </style> -->
-    <title> Ubook </title>
 </head>
 
-  <body>
-    <div class="topnav">
-      <a href = "/">
-        <img id = "main_logo"  src="{% static 'blog/symbollogo.png' %}" alt="logo" />
-      </a >
-        <a class = "nav_links" href = "/user_profile">
-            Profile 
-        </a>
-        <br>
-        <a class = "nav_links" href = "/blog">
-            Blog
-        </a>
-        <br>
-        <a class = "nav_links" href = "/message">
-            Message
-        </a>
-        <div id="logout">
-            <button class="logout_btn" onclick="logout_user()" style="float: right">Log out</button>
 
-        </div>
-    </div>
+  <body>
+  <header>
+      <div id="header_bar">
+          <div id="main_logo">
+              <a href="/">
+                  <img id="ubook_logo" src="{% static 'user_profile/new_symbollogo.png' %}" alt="ubook logo"/>
+              </a>
+          </div>
+
+
+
+          <div id="logged_in">
+              <div class="pad40percent"></div>
+              <div id="user_mini_top_div">
+
+                  <a href="/user_profile" ><img class="user_mini_pic" src="{% static 'user_profile/profile-placeholder.png' %}"/>
+                      <p class="user_pic_tag">{{user.first_name}} {{user.last_name}}</p></a>
+              </div>
+              <div class="menu">
+
+                  <ul>
+                      <li>
+                          <a href="/user_profile"><p>Profile</p></a>
+                      </li>
+                      <li>
+                          <a href="/message"><p>Message</p></a>
+                      </li>
+                  </ul>
+
+              </div>
+              <button class="logout_btn" onclick="logout_user()">Log out</button>
+          </div>
+      </div>
+  </header>
 
    
 

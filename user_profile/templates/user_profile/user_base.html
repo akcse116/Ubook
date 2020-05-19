@@ -17,6 +17,9 @@
     <script src="{% static 'user_profile/page_script.js' %}"></script>
     <script src="{% static 'user_profile/ws_script.js' %}"></script>
 </head>
+
+
+
 <body onload="get_wall_posts()">
 <header>
     <div id="header_bar">
@@ -50,11 +53,6 @@
             <button class="logout_btn" onclick="logout_user()">Log out</button>
         </div>
 
-
-        <!--<div id="logout">
-            <button class="logout_btn" onclick="logout_user()">Log out</button>
-
-        </div>-->
         <div id="login">
             <div id="username_div">
                     <label>Username</label>

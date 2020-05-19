@@ -18,7 +18,6 @@ header{
     /*background-color: #255FAC;*/
     background-color: #3B5998;
     border-bottom: solid 1px #364876;
-
 }
 input{
     border: solid 1px #202020;
@@ -55,7 +54,6 @@ a:hover{
     width: 50%;
     float: left;
     margin-top: 1.1%;
-
 }
 #logout{}
 

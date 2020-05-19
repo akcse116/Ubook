@@ -33,16 +33,12 @@ function user_signup() {
             }
             warn[0].innerHTML = this.response;
             warn[0].style.visibility = 'visible';
-            /*	Do	something	with	the	response*/
-            /*if input deemed invalid inform user and reprompt else user is redirected*/
         }
     };
     request.open("POST", window.location + "signup/");
     request.send(input);
 
 }
-
-
 
 function login_user(){
     /*let warn = document.getElementsByClassName('warning');*/

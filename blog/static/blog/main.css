@@ -8,6 +8,45 @@ body {
     color:black;
     /*margin: 1rem 0 0 0;*/
 }
+header{
+    z-index: 1;
+    width: 100%;
+    height: 11.5vh;
+    /*background-color: #255FAC;*/
+    background-color: #3B5998;
+    border-bottom: solid 1px #364876;
+}
+input{
+    border: solid 1px #202020;
+}
+button{
+    cursor: pointer;
+    outline: none;
+}
+ul{
+    list-style: none;
+}
+p{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+}
+a:hover{
+    cursor: pointer;
+}
+#header_bar{
+    margin: 0 auto;
+    width: 90vw;
+}
+#main_logo{
+    width: 50%;
+    float: left;
+    margin-top: 1.1%;
+}
+
 .topnav {
     background-color: #3B5998;
     width: 100%;
@@ -27,6 +66,106 @@ body {
     height: 65px;
     float: left; 
 }
+#ubook_logo{
+    width: 27%;
+    transition-duration: .6s;
+}
+#ubook_logo:hover{
+    width: 33%;
+    transition-duration: .6s;
+}
+
+#header_bar{
+    margin: 0 auto;
+    width: 90vw;
+}
+#main_logo{
+    width: 50%;
+    float: left;
+    margin-top: 1.1%;
+}
+#logged_in{
+    width: 50%;
+    float: left;
+    margin-top: 2.8%;
+    font-family: "Open Sans", Arial, Helvetica, Sans-Serif;
+}
+#logged_in p{
+    /*position: relative;*/
+    margin-top: 5px;
+    float: left;
+    color: #fcfffa;
+}
+.pad40percent{
+    height: 100%;
+    float: left;
+    width: 40%;
+}
+#username_div{
+    /*color: #fcfffa;*/
+    float: left;
+    display: inline-block;
+    margin-left: 140px;
+    margin-right: 10px;
+}
+.user_mini_pic{
+    margin: 1vh;
+    background-color: #DCDCDC;
+    padding: 1px;
+    width: 30px;
+    border-radius: 15px;
+    float: left;
+    transition-duration: .6s;
+}
+.user_pic_tag{
+    font-size: 0;
+    /*overflow: hidden;*/
+}
+#user_mini_top_div{
+    min-width: 20%;
+    max-width: 30%;
+    /*position: relative;*/
+    padding: 0 0 0 20%;
+    float: left;
+    margin: 16px 0 0 0;
+
+}
+#user_mini_top_div:hover .user_mini_pic{
+    transition-duration: .6s;
+    transform: translate(0px,-23px);
+}
+#user_mini_top_div:hover .user_pic_tag{
+    font-size: inherit;
+    transition-duration: .7s;
+}
+
+#user_mini_top_div p{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    float: left;
+}
+.menu{
+    float: left;
+}
+.menu ul li{
+    margin: 0 1vh 0 1vh;
+    float: left;
+}
+.menu ul li:hover{
+    transition-duration: .25s;
+    border-bottom: solid #e9eaee 3px;
+}
+#pass_div{
+    /*color: #fcfffa;*/
+    float: left;
+    display: inline-block;
+}
+
+
+
+
+
 
 .content-container {
     background-color:#DCDCDC;
@@ -133,7 +272,9 @@ body {
 .button {
     background-color: whitesmoke;
     /*border-radius: 4px;*/
-
+}
+button:hover{
+    cursor: pointer;
 }
 .logout_btn{
     color: #FFFFFF;
