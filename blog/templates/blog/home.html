@@ -30,7 +30,7 @@
                     <div class ="post-box">
                         {% if post.0.media != None %}
 
-                        <img src= "{{post.5}}" style="max-width: 300px; max-height: 300px"><br>
+                        <img src= "{{post.5}}" style="max-width: 300px"><br>
                         {% endif %}
 
                         {{post.0.content}}
@@ -48,7 +48,7 @@
                         {% endif %}
 
                         {% if post.4 %}
-                        <button class = "button" type="button" onclick="sendLike(this);" style="background-color: blue">
+                        <button class = "button" type="button" onclick="sendLike(this);" style="background-color: #65ff74">
                             <i class ="emoji">&#128077;</i>
                         </button>
                         {% else %}
@@ -94,7 +94,7 @@
                     <div class ="post-box">
                         {% if post.0.media != None %}
 
-                        <img src= "{{post.0.media}}" style="max-width: 300px; max-height: 300px"><br>
+                        <img src= "{{post.0.media}}" style="max-width: 300px"><br>
                         {% endif %}
 
                         {{post.0.content}}
@@ -112,7 +112,7 @@
                         {% endif %}
 
                         {% if post.4 %}
-                        <button class = "button" type="button" onclick="sendLike(this);" style="background-color: blue">
+                        <button class = "button" type="button" onclick="sendLike(this);" style="background-color: #65ff74">
                             <i class ="emoji">&#128077;</i>
                         </button>
                         {% else %}

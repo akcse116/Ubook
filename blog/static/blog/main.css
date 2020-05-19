@@ -223,7 +223,7 @@ a:hover{
     
     display: flex;
     justify-content: space-between;
-    height: 80%;
+    min-height: 80%;
     width: 80%;
     flex-direction: column;
 }
